@@ -19,7 +19,7 @@ function init ()
 	external.globals.Add( 'autologin', false ); // skip the login window
 	external.globals.Add( 'AutoUpdateTimeout', null ); // timeout of check for new versions
 	external.globals.Add( 'BackgroundHooks', new ActiveXObject( 'Scripting.Dictionary' ) ); // names of backgrounds being downloaded
-	external.globals.Add( 'BackgroundList', new ActiveXObject( 'MSXML2.DOMDocument' ) ); // online xml list of backgrounds
+	external.globals.Add( 'BackgroundList', new ActiveXObject( 'MSXML2.DOMDocument.6.0' ) ); // online xml list of backgrounds
 	external.globals.Add( 'block', new ActiveXObject( 'Scripting.Dictionary' ) ); // stores the addresses of all users on the blocking list
 	external.globals.Add( 'cfg', false ); // user settings
 	external.globals.Add( 'ChatSessionPool', new ChatSessionPool() ); // handles conversations
@@ -27,9 +27,9 @@ function init ()
 	external.globals.Add( 'connected', false ); // flag if we have a connection
 	external.globals.Add( 'connecttime', 0 ); // the time when the connection was established
 	external.globals.Add( 'CommandLineQueue', new Array() ); // buffer of command line actions
-	external.globals.Add( 'debug', false ); // enables console output
+	external.globals.Add( 'debug', true ); // enables console output
 	external.globals.Add( 'headlines', new Array() ); // alerts and headlines buffer
-//	external.globals.Add( 'HTTPEnginePort', 0 ); // port on which the HTTPEngine is listening
+	external.globals.Add( 'HTTPEnginePort', 7777 ); // port on which the HTTPEngine is listening
 	external.globals.Add( 'idle', null ); // idle time tracking
 	external.globals.Add( 'language', '' ); // which translation is being used
 	external.globals.Add( 'last_address', '' ); // last used address
@@ -312,7 +312,7 @@ function init ()
 
 	/* Connect to the HTTPEngine
 	 */
-//	external.HTTPEngine.subscribe( external.wnd );
+	external.HTTPEngine.subscribe( external.wnd );
 
 	/* Menubar event
 	 */

@@ -1457,6 +1457,7 @@ function MenuBarUpdate ( section )
 		var cfg = external.globals( 'cfg' );
 		var tabs = cfg( 'tabbedchat' ).toString() == 'true';
 		var emo = cfg( 'emoticon' ).toString() == 'true';
+		var disemo = cfg( 'disableemoticon' ).toString() == 'true';
 
 		var tools = external.newPopupMenu;
 		tools.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_emo_style' ), 40 );
@@ -1464,7 +1465,8 @@ function MenuBarUpdate ( section )
 		tools.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_background' ),45 );
 		tools.AddSeparator();
 		tools.AddItem( true, tabs, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_tabbed' ), 42 );
-		tools.AddItem( true, emo, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_emoticons' ), 43 );
+		if (!disemo)
+			tools.AddItem( true, emo, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_emoticons' ), 43 );
 		tools.AddSeparator();
 		tools.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_settings' ), 44 );
 

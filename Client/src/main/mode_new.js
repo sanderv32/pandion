@@ -15,7 +15,7 @@ function mode_new ( mode, msg )
 
 		if ( external.globals( 'XMPPConnected' ) )
 		{
-			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 			dom.loadXML( '<presence type="unavailable"/>' );
 			if ( cfg( 'lastmsg' ).length )
 			{
@@ -107,12 +107,12 @@ function mode_new ( mode, msg )
 					break;
 					case 0:
 						external.globals( 'XMPPPrivacy' ) = 1;
-						var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+						var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 						dom.loadXML( '<presence type="unavailable"/>' );
 						warn( 'SENT: ' + dom.xml );
 						external.XMPP.SendXML( dom );
 
-						dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+						dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 						dom.loadXML( '<iq type="set"><query xmlns="jabber:iq:privacy"><active name="invisible"/></query></iq>' );
 						warn( 'SENT: ' + dom.xml );
 						external.XMPP.SendXML( dom );
@@ -121,15 +121,22 @@ function mode_new ( mode, msg )
 			else if ( external.globals( 'XMPPPrivacy' ) == 1 )
 			{
 				external.globals( 'XMPPPrivacy' ) = 0;
-				var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+				var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 				dom.loadXML( '<iq type="set"><query xmlns="jabber:iq:privacy"><active/></query></iq>' );
 				warn( 'SENT: ' + dom.xml );
 				external.XMPP.SendXML( dom );
 			}
 
-			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			/*
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument.3.0' );
 			dom.loadXML( '<presence><x xmlns="jabber:x:avatar"><hash/></x></presence>' );
 			dom.selectSingleNode( '/presence/x/hash' ).text = cfg( 'avatar' );
+			*/
+
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
+			dom.setProperty("SelectionNamespaces", "xmlns:a='jabber:x:avatar'");
+			dom.loadXML( '<presence><x xmlns="jabber:x:avatar"><hash/></x></presence>' );
+			dom.selectSingleNode( '//presence/a:x/a:hash' ).text = cfg( 'avatar' );
 
 			if ( msg.length )
 			{

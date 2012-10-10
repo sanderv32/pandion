@@ -301,7 +301,7 @@ function AddTransport ( ServiceAddress )
 		Hook.Window		= external.wnd;
 		gHooks.Add( ServiceAddress, Hook );
 
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/disco#info"/></iq>' );
 		dom.documentElement.setAttribute( 'to', ServiceAddress );
 		dom.documentElement.setAttribute( 'id', Hook.Id );
@@ -335,7 +335,7 @@ function ReceiveDiscoInfo ( iq )
 		Hook.From		= ServiceAddress;
 		gHooks.Add( ServiceAddress, Hook );
 
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/disco#items"/></iq>' );
 		dom.documentElement.setAttribute( 'to', ServiceAddress );
 		dom.documentElement.setAttribute( 'id', Hook.Id );
@@ -352,7 +352,7 @@ function ReceiveDiscoInfo ( iq )
 		Hook.From		= ServiceAddress;
 		gHooks.Add( ServiceAddress, Hook );
 
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:browse"/></iq>' );
 		dom.documentElement.setAttribute( 'to', ServiceAddress );
 		dom.documentElement.setAttribute( 'id', Hook.Id );
@@ -389,7 +389,7 @@ function ReceiveDiscoItems ( iq )
 					Hook.From		= Address.ShortAddress();
 					gHooks.Add( Address.ShortAddress(), Hook );
 
-					var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+					var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 					dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/disco#info"/></iq>' );
 					dom.documentElement.setAttribute( 'id', Hook.Id );
 					dom.documentElement.setAttribute( 'to', Address.ShortAddress() );
@@ -465,7 +465,7 @@ function ReceiveBrowse ( iq )
 		Hook.From		= ServiceAddress;
 		gHooks.Add( ServiceAddress, Hook );
 
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:agents"/></iq>' );
 		dom.documentElement.setAttribute( 'to', ServiceAddress );
 		dom.documentElement.setAttribute( 'id', Hook.Id );

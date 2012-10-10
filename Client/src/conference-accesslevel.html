@@ -99,7 +99,7 @@ function SetMode ()
 {
 	var RemoteOccupant = external.wnd.params[1];
 
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.loadXML( '<iq type="set"><query xmlns="http://jabber.org/protocol/muc#admin"><item/></query></iq>' );
 	dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
 	dom.documentElement.setAttribute( 'to', RemoteOccupant.Tracker.Address.ShortAddress() );

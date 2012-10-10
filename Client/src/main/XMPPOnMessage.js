@@ -55,7 +55,7 @@ function XMPPOnMessage ( ReceivedXML )
 	{
 		if ( Message.Body.length )
 		{
-			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 			dom.loadXML( '<message type="error"><error code="405"/></message>' );
 			dom.documentElement.firstChild.text = external.globals( 'Translator' ).Translate( 'main', 'msg_blocked' );
 			dom.documentElement.setAttribute( 'to', Message.From );
@@ -69,7 +69,7 @@ function XMPPOnMessage ( ReceivedXML )
 	 */
 	else if ( Message.WantsDelivered )
 	{
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<message><x xmlns="jabber:x:event"><delivered/><id/></x></message>' );
 		dom.selectSingleNode( '/message/x/id' ).text = Message.Id;
 		dom.documentElement.setAttribute( 'to', Message.From );
@@ -107,7 +107,7 @@ function XMPPOnMessage ( ReceivedXML )
 			}
 			else
 			{
-				var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+				var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 				dom.loadXML( '<message><x xmlns="http://jabber.org/protocol/muc#user"><decline/></x></message>' );
 				dom.documentElement.setAttribute( 'to', Message.From );
 				dom.documentElement.firstChild.firstChild.setAttribute( 'to', Message.MUCInvitationFrom );
@@ -172,7 +172,7 @@ function XMPPOnMessage ( ReceivedXML )
 
 		if ( Message.WantsDisplayed )
 		{
-			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 			dom.loadXML( '<message><x xmlns="jabber:x:event"><displayed/><id/></x></message>' );
 			if ( Message.Id.length )
 				dom.selectSingleNode( '/message/x/id' ).text = Message.Id;
@@ -190,7 +190,7 @@ function XMPPOnMessage ( ReceivedXML )
 	{
 		if ( Message.WantsDisplayed )
 		{
-			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 			dom.loadXML( '<message><x xmlns="jabber:x:event"><displayed/><id/></x></message>' );
 			if ( Message.Id.length )
 				dom.selectSingleNode( '/message/x/id' ).text = Message.Id;

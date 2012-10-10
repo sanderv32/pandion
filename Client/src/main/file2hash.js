@@ -1,7 +1,7 @@
 ﻿function file2hash ( filepath )
 {
 	var hash = new ActiveXObject( 'Scripting.Dictionary' );
-	var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+	var dom = new ActiveXObject( 'MSXML2.DOMDocument.6.0' );
 	dom.async = false;
 	dom.resolveExternals = false;
 	dom.load( filepath );

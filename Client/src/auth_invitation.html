@@ -28,7 +28,7 @@ function choice ( accept )
 {
 	var jid = external.wnd.params[1];
 
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.loadXML( '<presence/>' );
 	dom.documentElement.setAttribute( 'to', jid );
 	dom.documentElement.setAttribute( 'type', accept ? 'subscribed' : 'unsubscribed' );

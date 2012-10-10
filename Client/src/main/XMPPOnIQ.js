@@ -84,7 +84,7 @@ function XMPPOnIQ ( ReceivedXML )
 	 */
 	else if ( iq.Namespace == 'jabber:iq:last' && iq.Type == 'get' )
 	{
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="result"><query xmlns="jabber:iq:last"/></iq>' );
 		dom.documentElement.firstChild.setAttribute("seconds", Math.floor(external.globals("idle").timePassed() / 1000));
 		dom.documentElement.setAttribute( 'to', iq.From );
@@ -98,7 +98,7 @@ function XMPPOnIQ ( ReceivedXML )
 	 */
 	else if ( iq.Namespace == 'jabber:iq:version' && iq.Type == 'get' )
 	{
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="result"><query xmlns="jabber:iq:version"><name/><version/><os/></query></iq>' );
 		dom.documentElement.setAttribute( 'to', iq.From );
 		if ( iq.Id.length )
@@ -126,7 +126,7 @@ function XMPPOnIQ ( ReceivedXML )
 	 */
 	else if ( iq.Namespace == 'jabber:iq:time' && iq.Type == 'get' )
 	{
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="result"><query xmlns="jabber:iq:time"><utc/><display/></query></iq>' );
 		dom.documentElement.setAttribute( 'to', iq.From );
 		if ( iq.Id.length )
@@ -154,12 +154,13 @@ function XMPPOnIQ ( ReceivedXML )
 		{
 			/* Upload the user's avatar.
 			 */
-			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
+			dom.setProperty("SelectionNamespaces", "xmlns:ns='jabber:iq:avatar'");
 			dom.loadXML( '<iq type="result"><query xmlns="jabber:iq:avatar"><data/></query></iq>' );
 			dom.documentElement.setAttribute( 'to', iq.From );
 			if ( iq.Id.length )
 				dom.documentElement.setAttribute( 'id', iq.Id );
-			dom.selectSingleNode( '/iq/query/data' ).text = external.File( external.globals( 'usersdir' ) + 'My Avatars\\' + external.globals( 'cfg' ).Item( 'avatar' ) ).ReadBase64();
+			dom.selectSingleNode( '/iq/ns:query/ns:data' ).text = external.File( external.globals( 'usersdir' ) + 'My Avatars\\' + external.globals( 'cfg' ).Item( 'avatar' ) ).ReadBase64();
 			warn( 'SENT: ' + dom.xml );
 			external.XMPP.SendXML( dom );
 		}
@@ -167,7 +168,7 @@ function XMPPOnIQ ( ReceivedXML )
 		{
 			/* Not allowed
 			 */
-			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 			dom.loadXML( '<iq type="error"><query xmlns="jabber:iq:avatar"/><error code="405">Automatically denied.</error></iq>' );
 			dom.documentElement.setAttribute( 'to', iq.From );
 			if ( iq.Id.length )
@@ -205,7 +206,7 @@ function XMPPOnIQ ( ReceivedXML )
 		}
 		else
 		{
-			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 			dom.loadXML( '<iq type="error"><error code="400">This protocol is not supported.</error></iq>' );
 			dom.documentElement.setAttribute( 'to', iq.From );
 			if ( iq.Id.length )
@@ -219,7 +220,7 @@ function XMPPOnIQ ( ReceivedXML )
 	 */
 	else if ( iq.Namespace == 'urn:xmpp:ping' && iq.Type == 'get' )
 	{
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="result"/>' );
 		dom.documentElement.setAttribute( 'to', iq.From );
 		if ( iq.Id.length )
@@ -235,7 +236,7 @@ function XMPPOnIQ ( ReceivedXML )
 		var Node = iq.XMLDOM.selectSingleNode( '/iq[@type="get"]/query[@xmlns="http://jabber.org/protocol/disco#info"]' );
 		if ( Node.getAttributeNode( 'node' ) )
 		{
-			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 			dom.loadXML( '<iq type="error"><query xmlns="http://jabber.org/protocol/disco#info"><error code="404" type="cancel"><item-not-found xmlns="urn:ietf:xml:params:ns:xmpp-stanzas"/></error></query></iq>' );
 			dom.documentElement.setAttribute( 'to', iq.From );
 			if ( iq.Id.length )
@@ -246,7 +247,7 @@ function XMPPOnIQ ( ReceivedXML )
 		}
 		else
 		{
-			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 			dom.loadXML( '<iq type="result"><query><identity category="client" type="pc"/></query></iq>' );
 			dom.documentElement.setAttribute( 'to', iq.From );
 			if ( iq.Id.length )
@@ -278,7 +279,7 @@ function XMPPOnIQ ( ReceivedXML )
 	 */
 	else if ( iq.Type == 'set' || iq.Type == 'get' )
 	{
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="error"><error type="cancel" code="501"><feature-not-implemented xmlns="urn:ietf:xml:params:ns:xmpp-stanzas"/></error></iq>' );
 		dom.documentElement.setAttribute( 'to', iq.From );
 		if ( iq.Id.length )

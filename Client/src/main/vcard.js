@@ -127,7 +127,7 @@ function VCARD ()
 
 	function IntoXMLDOM ()
 	{
-		var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+		var dom = new ActiveXObject( 'MSXML2.DOMDocument.6.0' );
 		dom.loadXML( '<iq><vCard xmlns="vcard-temp"><FN/><N><GIVEN/><FAMILY/><MIDDLE/></N><NICKNAME/><URL/><BDAY/><AGE/><GENDER/><MARITALSTATUS/><LOCATION/><WORKCELL/><HOMECELL/><ORG><ORGNAME/><ORGUNIT/></ORG><TITLE/><ROLE/><TEL><HOME/><VOICE/><NUMBER/></TEL><TEL><HOME/><FAX/><NUMBER/></TEL><TEL><HOME/><MSG/><NUMBER/></TEL><ADR><HOME/><EXTADD/><STREET/><LOCALITY/><REGION/><PCODE/><COUNTRY/></ADR><TEL><WORK/><VOICE/><NUMBER/></TEL><TEL><WORK/><FAX/><NUMBER/></TEL><TEL><WORK/><MSG/><NUMBER/></TEL><ADR><WORK/><EXTADD/><STREET/><LOCALITY/><REGION/><PCODE/><COUNTRY/></ADR><EMAIL><INTERNET/><PREF/><USERID/></EMAIL><EMAIL><INTERNET/><USERID/></EMAIL><DESC/><JABBERID/></vCard></iq>' );
 		dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
 		vcard = dom.firstChild.firstChild;

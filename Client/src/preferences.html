@@ -154,8 +154,8 @@ function init ()
 
 	doc.autoupdate.checked = external.globals( 'installupdates' ) == 'yes';
 
-//	doc.filetransferhost.value = cfg( 'filetransferhost' );
-//	doc.filetransferport.value = isNaN( parseInt( cfg( 'filetransferport' ), 10 ) ) ? 0 : parseInt( cfg( 'filetransferport' ), 10 );
+	doc.filetransferhost.value = cfg( 'filetransferhost' );
+	doc.filetransferport.value = isNaN( parseInt( cfg( 'filetransferport' ), 10 ) ) ? 0 : parseInt( cfg( 'filetransferport' ), 10 );
 
 	doc.history_store.checked = cfg( 'history_store' ).toString() == 'true';
 
@@ -195,14 +195,14 @@ function save ()
 	var cfg = external.globals( 'cfg' );
 	var doc = document.all;
 
-//	if ( external.globals( 'HTTPEnginePort' ) != 0 && cfg( 'filetransferport' ) != doc.filetransferport.value && doc.filetransferport.value != 0 )
-//	{
-//		external.HTTPEngine.StopListening( external.globals( 'HTTPEnginePort' ) );
-//		external.globals( 'HTTPEnginePort' ) = 0;
-//		external.HTTPEngine.Listen( doc.filetransferport.value );
-//	}
-//	cfg( 'filetransferhost' ) = doc.filetransferhost.value;
-//	cfg( 'filetransferport' ) = doc.filetransferport.value;
+	if ( external.globals( 'HTTPEnginePort' ) != 0 && cfg( 'filetransferport' ) != doc.filetransferport.value && doc.filetransferport.value != 0 )
+	{
+		external.HTTPEngine.StopListening( external.globals( 'HTTPEnginePort' ) );
+		external.globals( 'HTTPEnginePort' ) = 0;
+		external.HTTPEngine.Listen( doc.filetransferport.value );
+	}
+	cfg( 'filetransferhost' ) = doc.filetransferhost.value;
+	cfg( 'filetransferport' ) = doc.filetransferport.value;
 
 	var LocalStartupLink = external.GetSpecialFolder( 0x0007 ) + '\\' + external.globals( 'softwarenamesafe' ) + '.lnk';
 	var CommonStartupLink = external.GetSpecialFolder( 0x0018 ) + '\\' + external.globals( 'softwarenamesafe' ) + '.lnk';
@@ -375,7 +375,7 @@ function pick_soundfile ( field )
 
 <!-- Connection -->
 <DIV id=connection class=panel>
-<!--
+
 <FIELDSET style="padding: 8px; padding-top: 0px; margin-top: 4px;">
 <LEGEND id=txt_portmap></LEGEND>
 <TABLE border=0 cellspacing=2 cellpadding=0 width="100%" style="margin-top: 4px; table-layout: fixed;">
@@ -386,7 +386,7 @@ function pick_soundfile ( field )
 </TR>
 </TABLE>
 </FIELDSET>
--->
+
 <FIELDSET style="padding: 8px; padding-top: 0px; margin-top: 4px;">
 <LEGEND id=txt_connection_settings></LEGEND>
 <SPAN id=txt_connection_desc></SPAN>

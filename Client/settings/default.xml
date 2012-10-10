@@ -19,13 +19,14 @@
 <conference_top>50</conference_top>
 <conference_width>700</conference_width>
 <contactlistdisplay>detailed</contactlistdisplay>
+<disableemoticon>true</disableemoticon>
 <downloaddir/>
-<emoticon>true</emoticon>
+<emoticon>false</emoticon>
 <emoticonset>shinyicons</emoticonset>
 <emoticonviewall>false</emoticonviewall>
 <flashtaskbar>true</flashtaskbar>
-<filetransferhost/>
-<filetransferport>0</filetransferport>
+<filetransferhost>im.atpi.com</filetransferhost>
+<filetransferport>7777</filetransferport>
 <hiddengroups/>
 <hiddengroupsoffline/>
 <history_store>true</history_store>

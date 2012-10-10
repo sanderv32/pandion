@@ -3,7 +3,7 @@ function XMPPOnDocumentStart ( ReceivedFragment )
 try {
 	warn( 'RECV: ' + ReceivedFragment );
 
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.loadXML( ReceivedFragment + '</stream:stream>' );
 
 	/* Get the stream ID and version
@@ -54,7 +54,7 @@ try {
 			hook.Window = external.wnd;
 			hook.Callback = 'OnLoginAuthSend';
 
-			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 			dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:auth"><username/></query></iq>' );
 			dom.documentElement.firstChild.firstChild.text = external.globals( 'cfg' ).Item( 'username' );
 			dom.documentElement.setAttribute( 'to', external.globals( 'cfg' ).Item( 'server' ) );

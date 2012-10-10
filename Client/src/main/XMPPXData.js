@@ -200,7 +200,8 @@ function XMPPXData ()
 
 	function BuildXML ( HTMLElement, XMLNode )
 	{
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
+		dom.async = false;
 		var Collection = HTMLElement.getElementsByTagName( 'INPUT' );
 		for ( var i = 0; i < Collection.length; i++ )
 		{

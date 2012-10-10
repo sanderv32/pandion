@@ -16,7 +16,7 @@ function Begin ()
 
 function SetSubject ()
 {
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.loadXML( '<message type="groupchat"><subject/></message>' );
 	dom.documentElement.setAttribute( 'xml:lang', external.globals( 'language' ) );
 	dom.documentElement.setAttribute( 'to', external.wnd.params[1].Address.ShortAddress() );

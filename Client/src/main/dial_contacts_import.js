@@ -19,7 +19,7 @@ function dial_contacts_import ()
 	 */
 	if ( Extension == 'xml' )
 	{
-		var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+		var dom = new ActiveXObject( 'MSXML2.DOMDocument.6.0' );
 		dom.async = false;
 		dom.resolveExternals = false;
 		dom.load( Location );
@@ -48,7 +48,7 @@ function dial_contacts_import ()
 					{
 						for ( var i = 0; i < ContactsToImport.length; ++i )
 						{
-							var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+							var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 							dom.loadXML( '<iq type="set"><query/></iq>' );
 							dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
 							dom.documentElement.firstChild.appendChild( ContactsToImport[i] );
@@ -197,7 +197,7 @@ function dial_contacts_import ()
 						var ContactNames = ( new VBArray( ContactsToImport.Keys() ) ).toArray();
 						for ( var i = 0; i < ContactNames.length; ++i )
 						{
-							var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+							var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 							dom.loadXML( '<iq type="set"><query><item/></query></iq>' );
 							dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
 							dom.documentElement.firstChild.firstChild.setAttribute( 'jid', ContactNames[i] + Transport );
@@ -243,7 +243,7 @@ function dial_contacts_import ()
 
 		if ( Transport.length )
 		{
-			var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+			var dom = new ActiveXObject( 'MSXML2.DOMDocument.6.0' );
 			dom.async = false;
 			dom.resolveExternals = false;
 			dom.load( Location );
@@ -274,7 +274,7 @@ function dial_contacts_import ()
 							var ContactNames = ( new VBArray( ContactsToImport.Keys() ) ).toArray();
 							for ( var i = 0; i < ContactNames.length; ++i )
 							{
-								var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+								var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 								dom.loadXML( '<iq type="set"><query><item/></query></iq>' );
 								dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
 								dom.documentElement.firstChild.firstChild.setAttribute( 'jid', ContactNames[i] + Transport );
@@ -353,7 +353,7 @@ function dial_contacts_import ()
 						var Accounts = ( new VBArray( ContactsToImport.Keys() ) ).toArray();
 						for ( var i = 0; i < Accounts.length; ++i )
 						{
-							var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+							var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 							dom.loadXML( '<iq type="set"><query><item/></query></iq>' );
 							dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
 							dom.documentElement.firstChild.firstChild.setAttribute( 'jid', Accounts[i] + Transport );

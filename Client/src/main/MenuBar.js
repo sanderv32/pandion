@@ -52,7 +52,7 @@ function MenuBarUpdate ( section )
 		Bookmarks.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_bookmarks_manage' ), 221 );
 		if ( cfg )
 		{
-			var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+			var dom = new ActiveXObject( 'MSXML2.DOMDocument.6.0' );
 			dom.async = false;
 			dom.resolveExternals = false;
 			dom.load( external.globals( 'usersdir' ) + 'Profiles\\' + cfg( 'username' ) + '@' + cfg( 'server' ) + '\\bookmarks.xml' );
@@ -95,7 +95,7 @@ function MenuBarUpdate ( section )
 		display.AddItem( true, false, ! list, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_tool_compact' ), 331 );
 
 		var language = external.newPopupMenu;
-		var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+		var dom = new ActiveXObject( 'MSXML2.DOMDocument.6.0' );
 		dom.async = false;
 		dom.resolveExternals = false;
 		dom.load( external.globals( 'cwd' ) + '..\\languages\\languages.xml' );
@@ -261,7 +261,7 @@ function MenuBarSelect ( id )
 			 */
 			if ( id >= 3800 && id < 3900 )
 			{
-				var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+				var dom = new ActiveXObject( 'MSXML2.DOMDocument.6.0' );
 				dom.async = false;
 				dom.resolveExternals = false;
 				dom.load( external.globals( 'cwd' ) + '..\\languages\\languages.xml' );
@@ -324,7 +324,7 @@ function MenuBarSelect ( id )
 			 */
 			else if ( id >= 22000 && id < 23000 )
 			{
-				var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+				var dom = new ActiveXObject( 'MSXML2.DOMDocument.6.0' );
 				dom.async = false;
 				dom.resolveExternals = false;
 				dom.load( external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' ).Item( 'username' ) + '@' + external.globals( 'cfg' ).Item( 'server' ) + '\\bookmarks.xml' );

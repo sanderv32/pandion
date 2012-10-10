@@ -50,7 +50,7 @@ function init ()
 	gHOOK.Callback	= 'receive';
 	gHOOK.Window	= external.wnd;
 
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:register"/></iq>' );
 	dom.documentElement.firstChild.setAttribute( 'xml:lang', external.globals( 'language' ) );
 	dom.documentElement.setAttribute( 'id', gHOOK.Id );
@@ -197,7 +197,7 @@ function newaccount_next ()
 	gHOOK.Callback	= 'receive';
 	gHOOK.Window	= external.wnd;
 
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.loadXML( '<iq type="set"><query xmlns="jabber:iq:register"><username/><password/><nick/><key/></query></iq>' );
 	dom.selectSingleNode( '/iq/query/username' ).text = document.getElementById( 'new_addr' ).value;
 	dom.selectSingleNode( '/iq/query/password' ).text = document.getElementById( 'new_pwrd' ).value;
@@ -244,7 +244,7 @@ function remove ()
 	gHOOK.Callback	= 'receive';
 	gHOOK.Window	= external.wnd;
 
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.loadXML( '<iq type="set"><query xmlns="jabber:iq:register"><remove/></query></iq>' );
 	dom.documentElement.firstChild.setAttribute( 'xml:lang', external.globals( 'language' ) );
 	dom.documentElement.setAttribute( 'id', gHOOK.Id );
@@ -262,7 +262,7 @@ function recv_removing ( iq )
 
 	/* Remove transport from roster
 	 */
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.loadXML( '<iq type="set"><query xmlns="jabber:iq:roster"><item subscription="remove"/></query></iq>' );
 	dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
 

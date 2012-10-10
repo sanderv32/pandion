@@ -44,7 +44,7 @@ function XMPPOnStream ( ReceivedXML )
 			if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "GSS-SPNEGO" ]' ) )
 			{
 				external.globals( 'XMPPSASLMechanism' ) = 'GSS-SPNEGO';
-				var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+				var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 				dom.loadXML( '<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="GSS-SPNEGO"/>' );
 				external.SASL.SSPI.Reset();
 				warn( 'SENT: ' + dom.xml );
@@ -53,7 +53,7 @@ function XMPPOnStream ( ReceivedXML )
 			else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "NTLM" ]' ) )
 			{
 				external.globals( 'XMPPSASLMechanism' ) = 'NTLM';
-				var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+				var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 				dom.loadXML( '<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="NTLM"/>' );
 				external.SASL.SSPI.Reset();
 				warn( 'SENT: ' + dom.xml );
@@ -62,7 +62,7 @@ function XMPPOnStream ( ReceivedXML )
 			else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "GSSAPI" ]' ) )
 			{
 				external.globals( 'XMPPSASLMechanism' ) = 'GSSAPI';
-				var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+				var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 				dom.loadXML( '<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="GSSAPI"/>' );
 				try {
 					external.SASL.GSSAPI.Reset();
@@ -88,7 +88,7 @@ function XMPPOnStream ( ReceivedXML )
 		else if ( ReceivedXML.documentElement.selectSingleNode( '/stream:features/mechanisms[@xmlns="urn:ietf:params:xml:ns:xmpp-sasl"]/mechanism[ . = "SCRAM-SHA-1" ]' ) )
 		{
 			external.globals( 'XMPPSASLMechanism' ) = 'SCRAM-SHA-1';
-			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 			dom.loadXML( '<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="SCRAM-SHA-1"/>' );
 			try
 			{
@@ -128,7 +128,7 @@ function XMPPOnStream ( ReceivedXML )
 			 */
 			var Data = external.SASL.PlainGenerateResponse( Addr, User, Pass );
 
-			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 			dom.loadXML( '<auth xmlns="urn:ietf:params:xml:ns:xmpp-sasl" mechanism="PLAIN"/>' );
 			dom.documentElement.text = Data;
 			warn( 'SENT: ' + dom.xml );
@@ -149,7 +149,7 @@ function XMPPOnStream ( ReceivedXML )
 			hook.Window		= external.wnd;
 			hook.Callback	= 'OnLoginAuthSend';
 
-			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 			dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:auth"><username/></query></iq>' );
 			dom.documentElement.firstChild.firstChild.text = external.globals( 'cfg' ).Item( 'username' );
 			dom.documentElement.setAttribute( 'to', external.globals( 'cfg' ).Item( 'server' ) );
@@ -180,7 +180,7 @@ function XMPPOnStream ( ReceivedXML )
 	 */
 	else if (ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']")) {
 		if (external.globals("sspiserver").length || external.globals("authentication") == "ntlm") {
-			var dom = new ActiveXObject("Msxml2.DOMDocument");
+			var dom = new ActiveXObject("Msxml2.DOMDocument.6.0");
 			dom.loadXML("<response xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>");
 			if (external.globals( 'XMPPSASLMechanism' ) == 'GSSAPI') {
 				try {
@@ -194,7 +194,7 @@ function XMPPOnStream ( ReceivedXML )
 			warn("SENT: " + dom.xml);
 			external.XMPP.SendXML(dom);
 		} else if( external.globals( 'XMPPSASLMechanism' ) == 'SCRAM-SHA-1' && external.globals( 'XMPPChallengesReceived' ) == 0 ) {
-			var dom = new ActiveXObject("Msxml2.DOMDocument");
+			var dom = new ActiveXObject("Msxml2.DOMDocument.6.0");
 			dom.loadXML("<response xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>" );
 			try {
 				external.SASL.SCRAM.ValidateServerFirstMessage( ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text );
@@ -206,7 +206,7 @@ function XMPPOnStream ( ReceivedXML )
 			external.XMPP.SendXML(dom);
 			external.globals( 'XMPPChallengesReceived' ) = 1;
 		} else if( external.globals( 'XMPPSASLMechanism' ) == 'SCRAM-SHA-1' && external.globals( 'XMPPChallengesReceived' ) == 1 ) {
-			var dom = new ActiveXObject("Msxml2.DOMDocument");
+			var dom = new ActiveXObject("Msxml2.DOMDocument.6.0");
 			dom.loadXML("<response xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>" );
 			try {
 				external.SASL.SCRAM.ValidateServerFinalMessage( ReceivedXML.documentElement.selectSingleNode("/challenge[@xmlns='urn:ietf:params:xml:ns:xmpp-sasl']").text );
@@ -277,7 +277,7 @@ function XMPPOnStream ( ReceivedXML )
 //					"authzid=\"" + response["authzid"] + "\"," +
 					"response=" + response["response"];
 
-				var dom = new ActiveXObject("Msxml2.DOMDocument");
+				var dom = new ActiveXObject("Msxml2.DOMDocument.6.0");
 				dom.loadXML("<response xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>" );
 				dom.documentElement.text = external.StringToBase64(output);
 				warn("SENT: " + dom.xml);
@@ -351,7 +351,7 @@ function XMPPOnStream ( ReceivedXML )
 		hook.Window		= external.wnd;
 		hook.Callback	= 'OnLoginBind';
 
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="set"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><resource/></bind></iq>' );
 		dom.documentElement.setAttribute( 'id', hook.Id );
 		dom.documentElement.firstChild.firstChild.text = external.globals( 'cfg' ).Item( 'resource' );

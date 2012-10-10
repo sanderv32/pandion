@@ -3,7 +3,7 @@
 function EmoticonCache ()
 {
 	this.Styles					= new ActiveXObject( 'Scripting.Dictionary' );
-	this.List					= new ActiveXObject( 'MSXML2.DOMDocument' );
+	this.List					= new ActiveXObject( 'MSXML2.DOMDocument.6.0' );
 	this.ListHooks				= new ActiveXObject( 'Scripting.Dictionary' );
 
 	this.GetSubset				= GetSubset;
@@ -115,7 +115,7 @@ function EmoticonCache ()
 	{
 		var Style = new EmoticonStyle();
 
-		var dom					= new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom					= new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.async				= false;
 		dom.resolveExternals	= false;
 		dom.load( external.globals( 'usersdir' ) + 'Emoticons\\' + Name + '\\icondef.xml' );

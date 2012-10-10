@@ -59,7 +59,7 @@ function dial_login ( visible )
 	document.getElementById( 'signin-address' ).focus();
 	document.getElementById( 'signin-address' ).value = external.globals( 'last_address' );
 	document.getElementById( 'signin-remember' ).checked = external.globals( 'last_password_remember' ).toString() == 'true';
-	document.getElementById( 'signin-autoconnect' ).checked = external.globals( 'autologin' ).toString() == 'true';
+//	document.getElementById( 'signin-autoconnect' ).checked = external.globals( 'autologin' ).toString() == 'true'; // 2012-08-10 A.Moorthaemer
 	if ( external.globals( 'last_address' ).length && external.globals( 'authentication' ) == 'normal' )
 	{
 		document.getElementById( 'signin-password' ).focus();
@@ -110,8 +110,8 @@ function dial_login_changeAddressList ()
 function dial_login_changeRemember ()
 {
 	var Checked = document.getElementById( 'signin-remember' ).checked;
-	document.getElementById( 'txt-signin-autoconnect' ).disabled = ! Checked;
-	document.getElementById( 'signin-autoconnect' ).disabled = ! Checked;
+//	document.getElementById( 'txt-signin-autoconnect' ).disabled = ! Checked; // 2012-08-10 A.Moorthaemer
+//	document.getElementById( 'signin-autoconnect' ).disabled = ! Checked; // 2012-08-10 A.Moorthaemer
 }
 
 function dial_login_connect ()
@@ -132,7 +132,8 @@ function dial_login_connect ()
 		if ( Address.User.length && Address.Host.length )
 		{
 			external.globals( 'last_password_remember' ) = document.getElementById( 'signin-remember' ).checked;
-			external.globals( 'autologin' ) = document.getElementById( 'signin-autoconnect' ).checked;
+//			external.globals( 'autologin' ) = false; document.getElementById( 'signin-autoconnect' ).checked; // 2012-08-10 A.Moorthaemer 
+			external.globals( 'autologin' ) = false; // 2012-08-10 A.Moorthaemer 
 			login( Address, document.getElementById( 'signin-password' ).value );
 		}
 		else
@@ -145,7 +146,8 @@ function dial_login_connect ()
 		if ( Address.Host.length )
 		{
 			Address.Parse( Address.Host );
-			external.globals( 'autologin' ) = document.getElementById( 'signin-autoconnect' ).checked;
+//			external.globals( 'autologin' ) = document.getElementById( 'signin-autoconnect' ).checked; // 2012-08-10 A.Moorthaemer
+			external.globals( 'autologin' ) = false; // 2012-08-10 A.Moorthaemer
 			login( Address, '' );
 		}
 		else

@@ -2,8 +2,8 @@ function XMPPOnDisconnected ()
 {
 	warn( 'EVNT: Disconnected' );
 
-//	external.globals( 'HTTPEnginePort' ) = 0;
-//	external.HTTPEngine.StopListening( 0 );
+	external.globals( 'HTTPEnginePort' ) = 0;
+	external.HTTPEngine.StopListening( 0 );
 
 	external.globals( 'ClientRoster' ).AllOffline();
 	external.globals( 'ClientServices' ).Clear();
@@ -30,7 +30,7 @@ function XMPPOnDisconnected ()
 		var TrackerNames = ( new VBArray( external.globals( 'ConferenceSessionPool' ).Trackers.Keys() ) ).toArray();
 		for ( var i = 0; i < TrackerNames.length; ++i )
 		{
-			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 			dom.loadXML( '<presence type="unavailable"/>' );
 			dom.documentElement.setAttribute( 'from', TrackerNames[i] + '/' + external.globals( 'ConferenceSessionPool' ).Trackers.Item( TrackerNames[i] ).Address.Resource );
 

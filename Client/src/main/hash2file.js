@@ -1,6 +1,6 @@
 ﻿function hash2file ( hash, filepath )
 {
-	var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+	var dom = new ActiveXObject( 'MSXML2.DOMDocument.6.0' );
 	dom.async = false;
 	dom.resolveExternals = false;
 	var root = dom.createElement( 'settings' );

@@ -9,6 +9,7 @@ function LoadProfile ( Address )
 	 */
 	external.globals( 'settingsfile' ) = external.globals( 'usersdir' ) + 'Profiles\\' + Address.ShortAddress() + '\\settings.xml';
 	external.globals( 'cfg' ) = file2hash( external.globals( 'cwd' ) + '..\\settings\\default.xml' );
+	var cfg_override = file2hash( external.globals( 'cwd' ) + '..\\settings\\override.xml' );
 	var cfg_custom = file2hash( external.globals( 'settingsfile' ) );
 	var cfg = external.globals( 'cfg' );
 
@@ -18,6 +19,13 @@ function LoadProfile ( Address )
 		for ( var i = 0; i < keys.length; i++ )
 			if ( cfg.Exists( keys[i] ) )
 				cfg( keys[i] ) = cfg_custom( keys[i] );
+	}
+	if ( cfg_override )
+	{
+		var keys = ( new VBArray( cfg_override.Keys() ) ).toArray();
+		for ( var i = 0; i < keys.length; i++ )
+			if ( cfg.Exists( keys[i] ) )
+				cfg( keys[i] ) = cfg_override( keys[i] );
 	}
 
 	/* Select one of the default avatars if necessary

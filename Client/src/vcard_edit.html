@@ -169,7 +169,7 @@ function refresh ()
 	hook.Window = external.wnd;
 	hook.Callback = 'vcard_show';
 
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.loadXML( '<iq type="get"><vCard xmlns="vcard-temp"/></iq>' );
 	dom.documentElement.setAttribute( 'id', hook.Id );
 	dom.documentElement.setAttribute( 'to', external.wnd.params[1] );

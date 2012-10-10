@@ -93,7 +93,7 @@ function init ()
 
 	if ( external.globals( 'ClientServices' ).Services.Exists( domain ) && external.globals( 'ClientServices' ).Services( domain ).Options & 0x0001 )
 	{
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<message><body/></message>' );
 		dom.documentElement.firstChild.text = external.globals( 'Translator' ).Translate( 'file_send', 'filetransfer' ) + '\nhttp://' + gHost + ':' + gPort + gPath + '\n' + makeprettysize( external.File( document.getElementById( 'location' ).value ).Size, 1 );
 		dom.documentElement.setAttribute( 'to', external.wnd.params[0] + ( external.wnd.params[1].length ? '/' + external.wnd.params[1] : '' ) );
@@ -107,7 +107,7 @@ function init ()
 		gHook.Window = external.wnd;
 		gHook.TTL = -1;
 
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="set"><query xmlns="jabber:iq:oob"><url/><desc/></query></iq>' );
 		dom.selectSingleNode( '/iq/query/url' ).text = 'http://' + gHost + ':' + gPort + gPath;
 		dom.selectSingleNode( '/iq/query/desc' ).text = makeprettysize( external.File( document.getElementById( 'location' ).value ).Size, 1 );

@@ -130,8 +130,10 @@ function init ()
 		document.getElementById( 'page1_services' ).disabled = true;
 		document.getElementById( 'page1_username' ).focus();
 	}
-	else
-		document.getElementById( 'page1_username' ).focus();
+	else {
+		document.getElementById( 'page1_a' ).checked = true; // 2012-08-09 modified A. Moorthaemer
+		document.getElementById( 'page1_services' ).focus(); // 2012-08-09 modified A. Moorthaemer
+	}
 	external.wnd.hide( false );
 }
 
@@ -170,7 +172,7 @@ function page1_next ()
 					gHOOK = new XMPPHookIQ();
 					gHOOK.Window = external.wnd;
 					gHOOK.Callback = 'recv_gateway';
-					var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+					var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 					dom.loadXML( '<iq type="set"><query xmlns="jabber:iq:gateway"><prompt/></query></iq>' );
 					dom.documentElement.firstChild.firstChild.text = user;
 					dom.documentElement.setAttribute( 'id', gHOOK.Id );
@@ -247,7 +249,7 @@ function page1_next ()
 			gHOOK = new XMPPHookIQ();
 			gHOOK.Window = external.wnd;
 			gHOOK.Callback = 'recv_search_start';
-			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 			dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:search"/></iq>' );
 			dom.documentElement.firstChild.setAttribute( 'xml:lang', external.globals( 'language' ) );
 			dom.documentElement.setAttribute( 'id', gHOOK.Id );
@@ -326,7 +328,7 @@ function send_add_roster ()
 	gHOOK = new XMPPHookIQ();
 	gHOOK.Window = external.wnd;
 	gHOOK.Callback = 'recv_add_roster';
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.loadXML( '<iq type="set"><query xmlns="jabber:iq:roster"><item/></query></iq>' );
 	dom.documentElement.setAttribute( 'id', gHOOK.Id );
 	dom.documentElement.firstChild.firstChild.setAttribute( 'jid', gJID );
@@ -340,7 +342,7 @@ function recv_add_roster ( iq )
 	{
 		/* Request a subscription
 		 */
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<presence type="subscribe"/>' );
 		dom.documentElement.setAttribute( 'to', gJID );
 		external.wnd.params.warn( 'SENT: ' + dom.xml );
@@ -469,7 +471,7 @@ function recv_search_start ( iq )
 	/* Set up the default header information
 	 */
 	if ( external.globals( 'ClientServices' ).Services.Exists( iq.From ) )
-		document.getElementById( 'page3_title' ).innerText = external.globals( 'ClientServices' ).Services.Items( iq.From ).Name;
+		document.getElementById( 'page3_title' ).innerText = external.globals( 'ClientServices' ).Services( iq.From ).Name; // 2012-08-09 modified A. Moorthaemer
 	else
 		document.getElementById( 'page3_title' ).innerText = external.globals( 'Translator' ).Translate( 'adduser', 'search_title' );
 	document.getElementById( 'page3_subtitle' ).innerText = external.globals( 'Translator' ).Translate( 'adduser', 'search_tagline' );
@@ -561,7 +563,7 @@ function page3_next ()
 {
 	/* Turn the HTML form back into XML
 	 */
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.loadXML( '<iq type="set"><query>' + ( gXDATA ? '<x type="submit"/>' : '' ) + '</query></iq>' );
 
 	if ( gXDATA )

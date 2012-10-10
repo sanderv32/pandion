@@ -14,7 +14,7 @@ function dial_contacts_export ()
 		return false;
 	}
 
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.appendChild( dom.createProcessingInstruction( 'xml', 'version="1.0" encoding="UTF-8"' ) );
 	dom.appendChild( dom.createElement( 'query' ) );
 	var ContactAddresses = ( new VBArray( external.globals( 'ClientRoster' ).Items.Keys() ) ).toArray();

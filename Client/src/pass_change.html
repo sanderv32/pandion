@@ -40,7 +40,7 @@ function ok ()
 
 		/* Change password
 		 */
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="set"><query xmlns="jabber:iq:register"><username/><password/></query></iq>' );
 		dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
 		dom.documentElement.setAttribute( 'to', cfg( 'server' ) );

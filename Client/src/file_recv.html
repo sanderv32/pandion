@@ -102,7 +102,7 @@ function outnit ()
 		external.HTTPEngine.Abort( gSession );
 	if ( gSession || ! gInterval )
 	{
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="error"><error code="406">File Transfer Refused</error></iq>' );
 		dom.documentElement.setAttribute( 'to', external.wnd.params[2] );
 		if ( external.wnd.params[3].length )
@@ -222,7 +222,7 @@ function abortfile ()
 			external.HTTPEngine.Abort( gSession );
 			document.getElementById( 'btn_abort' ).disabled = true;
 
-			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 			dom.loadXML( '<iq type="error"><error code="406">File Transfer Refused</error></iq>' );
 			dom.documentElement.setAttribute( 'to', external.wnd.params[2] );
 			if ( external.wnd.params[3].length )
@@ -297,7 +297,7 @@ function OnHTTPFileErr ( session, error )
 		external.HTTPEngine.Abort( gSession );
 		document.getElementById( 'btn_abort' ).disabled = true;
 
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="error"><error code="406">File Transfer Refused</error></iq>' );
 		dom.documentElement.setAttribute( 'to', external.wnd.params[2] );
 		if ( external.wnd.params[3].length )
@@ -328,7 +328,7 @@ function HTTPOnTransferComplete ( session )
 	external.wnd.setTitle( external.globals( 'Translator' ).Translate( 'file_recv', 'title_completed', [ document.getElementById( 'filename' ).value ] ) );
 	gSession = 0;
 
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.loadXML( '<iq type="result"/>' );
 	dom.documentElement.setAttribute( 'to', external.wnd.params[2] );
 	if ( external.wnd.params[3].length )

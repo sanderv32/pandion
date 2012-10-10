@@ -121,7 +121,7 @@ function CommandLineShift ()
 	 */
 	else if ( argument.length && external.FileExists( argument ) )
 	{
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.async = false;
 		dom.resolveExternals = false;
 		dom.load( argument );

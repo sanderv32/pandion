@@ -52,7 +52,7 @@ function background_refresh ()
 	var BackgroudPath			= external.globals( 'usersdir' ) + 'Backgrounds\\';
 	var BackgroundDirectories	= new VBArray( external.Directory.ListDirs( BackgroudPath ) ).toArray();
 
-	var dom					= new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom					= new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.async				= false;
 	dom.resolveExternals	= false;
 

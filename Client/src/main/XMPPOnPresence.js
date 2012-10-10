@@ -20,7 +20,7 @@ function XMPPOnPresence ( ReceivedXML )
 		return;
 
 	var ShortAddress = Presence.FromAddress.ShortAddress();
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 
 	/* Subscription Request
 	 */

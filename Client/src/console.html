@@ -64,7 +64,7 @@ function redraw ( l )
 
 function send ()
 {
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.loadXML( document.getElementById( 'raw' ).value );
 	if ( dom.documentElement )
 	{

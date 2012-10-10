@@ -147,7 +147,7 @@ function refresh ()
 	hook.Window		= external.wnd;
 	hook.Callback	= 'vcard_show';
 
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.loadXML( '<iq type="get"><vCard xmlns="vcard-temp"/></iq>' );
 	dom.documentElement.setAttribute( 'id', hook.Id );
 	dom.documentElement.setAttribute( 'to', external.wnd.params[0] );
@@ -162,7 +162,7 @@ function refresh ()
 		hook.Window		= external.wnd;
 		hook.Type		= 4 | 8;
 		hook.Callback	= 'time_show';
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:time"/></iq>' );
 		dom.documentElement.setAttribute( 'id', hook.Id );
 		dom.documentElement.setAttribute( 'to', external.wnd.params[0] + '/' + external.wnd.params[1] );
@@ -173,7 +173,7 @@ function refresh ()
 		hook.Window		= external.wnd;
 		hook.Type		= 4 | 8;
 		hook.Callback	= 'version_show';
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:version"/></iq>' );
 		dom.documentElement.setAttribute( 'id', hook.Id );
 		dom.documentElement.setAttribute( 'to', external.wnd.params[0] + '/' + external.wnd.params[1] );

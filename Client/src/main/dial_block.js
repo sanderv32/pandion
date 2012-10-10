@@ -11,7 +11,7 @@ function dial_block ( Address )
 	{
 		external.globals( 'block' ).Remove( ShortAddress );
 
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<presence type="subscribed"/>' );
 		dom.documentElement.setAttribute( 'to', ShortAddress );
 		warn( 'SENT: ' + dom.xml );
@@ -23,13 +23,13 @@ function dial_block ( Address )
 	{
 		external.globals( 'block' ).Add( ShortAddress, null );
 
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<presence type="unavailable"/>' );
 		dom.documentElement.setAttribute( 'to', ShortAddress );
 		warn( 'SENT: ' + dom.xml );
 		external.XMPP.SendXML( dom );
 
-		dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<presence type="unsubscribed"/>' );
 		dom.documentElement.setAttribute( 'to', ShortAddress );
 		warn( 'SENT: ' + dom.xml );

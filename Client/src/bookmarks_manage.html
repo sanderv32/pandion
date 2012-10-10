@@ -43,7 +43,7 @@ function Reload ()
 	while ( List.options.length )
 		List.options.remove( 0 );
 
-	var dom					= new ActiveXObject( 'MSXML2.DOMDocument' );
+	var dom					= new ActiveXObject( 'MSXML2.DOMDocument.6.0' );
 	dom.async				= false;
 	dom.resolveExternals	= false;
 	dom.load( external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '\\bookmarks.xml' );
@@ -67,7 +67,7 @@ function Edit ()
 	var Address = document.getElementById( 'list' ).value;
 	if ( Address.length )
 	{
-		var dom					= new ActiveXObject( 'MSXML2.DOMDocument' );
+		var dom					= new ActiveXObject( 'MSXML2.DOMDocument.6.0' );
 		dom.async				= false;
 		dom.resolveExternals	= false;
 		dom.load( external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '\\bookmarks.xml' );
@@ -92,7 +92,7 @@ function Delete ()
 	if ( Address.length && 6 == external.wnd.messageBox( true, external.globals( 'Translator' ).Translate( 'conference-bookmarks-manage', 'confirm_delete' ), external.globals( 'softwarename' ), 4 | 48 ) )
 	{
 		var Path				= external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '\\bookmarks.xml';
-		var dom					= new ActiveXObject( 'MSXML2.DOMDocument' );
+		var dom					= new ActiveXObject( 'MSXML2.DOMDocument.6.0' );
 		dom.async				= false;
 		dom.resolveExternals	= false;
 		dom.load( Path );

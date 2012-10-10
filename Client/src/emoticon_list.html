@@ -51,7 +51,7 @@ function panel_emoticon ()
 	document.getElementById( 'emoticon_row_loading' ).style.display = 'none';
 	var list = document.getElementById( 'emoticon_list' );
 	var emo_path = external.globals( 'usersdir' ) + 'Emoticons\\';
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.async = false;
 	dom.resolveExternals = false;
 	var subdirs = new VBArray( external.Directory.ListDirs( emo_path ) ).toArray();

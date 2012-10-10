@@ -46,7 +46,7 @@ function ClientRosterAvatarVCard ( iq )
 					var hook		= new XMPPHookIQ();
 					hook.Window		= external.wnd;
 					hook.Callback	= 'ClientRosterAvatarStorage';
-					var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+					var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 					dom.loadXML( '<iq type="get"><query xmlns="storage:client:avatar"/></iq>' );
 					dom.documentElement.setAttribute( 'id', hook.Id );
 					dom.documentElement.setAttribute( 'to', ShortAddress );
@@ -93,7 +93,7 @@ function ClientRosterAvatarStorage ( iq )
 					var hook		= new XMPPHookIQ();
 					hook.Window		= external.wnd;
 					hook.Callback	= 'ClientRosterAvatarDirect';
-					var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+					var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 					dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:avatar"/></iq>' );
 					dom.documentElement.setAttribute( 'id', hook.Id );
 					dom.documentElement.setAttribute( 'to', ShortAddress + '/' + Resources[i] );
@@ -565,7 +565,7 @@ function ClientRoster ()
 				var hook		= new XMPPHookIQ();
 				hook.Window		= external.wnd;
 				hook.Callback	= 'ClientRosterVcard';
-				var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+				var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 				dom.loadXML( '<iq type="get"><vCard xmlns="vcard-temp"/></iq>' );
 				dom.documentElement.setAttribute( 'id', hook.Id );
 				dom.documentElement.setAttribute( 'to', jid );
@@ -935,7 +935,7 @@ function ClientRoster ()
 					var hook		= new XMPPHookIQ();
 					hook.Window		= external.wnd;
 					hook.Callback	= 'ClientRosterVcard';
-					var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+					var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 					dom.loadXML( '<iq type="get"><vCard xmlns="vcard-temp"/></iq>' );
 					dom.documentElement.setAttribute( 'id', hook.Id );
 					dom.documentElement.setAttribute( 'to', jid );
@@ -1377,7 +1377,7 @@ function ClientRosterGroup ( roster, name )
 	{
 		if ( newname != this.Name )
 		{
-			var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+			var dom = new ActiveXObject( 'MSXML2.DOMDocument.6.0' );
 			dom.loadXML( '<iq type="set"><query/></iq>' );
 			dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
 			var query = dom.documentElement.firstChild;
@@ -1502,7 +1502,7 @@ function ClientRosterItem ( roster, jid )
 		for ( var i = 0; i < this.Groups.length; ++i )
 			if ( this.Groups[i] != oldGroupName && ! newGroups.Exists( this.Groups[i] ) )
 				newGroups.Add( this.Groups[i], null );
-		var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+		var dom = new ActiveXObject( 'MSXML2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="set"><query><item/></query></iq>' );
 		dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
 		var groupnames = ( new VBArray( newGroups.Keys() ) ).toArray();
@@ -1619,7 +1619,7 @@ function ClientRosterItem ( roster, jid )
 						hook.Callback		= 'ClientRosterAvatarVCard';
 						userresource.LoadingAvatarHash	= Hash;
 						userresource.LoadingAvatarId	= hook.Id;
-						var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+						var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 						dom.loadXML( '<iq type="get"><vCard xmlns="vcard-temp"/></iq>' );
 						dom.documentElement.setAttribute( 'id', hook.Id );
 						dom.documentElement.setAttribute( 'to', this.JID );
@@ -1638,7 +1638,7 @@ function ClientRosterItem ( roster, jid )
 						hook.Callback		= 'ClientRosterAvatarStorage';
 						userresource.LoadingAvatarHash	= Hash;
 						userresource.LoadingAvatarId	= hook.Id;
-						var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+						var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 						dom.loadXML( '<iq type="get"><query xmlns="storage:client:avatar"/></iq>' );
 						dom.documentElement.setAttribute( 'id', hook.Id );
 						dom.documentElement.setAttribute( 'to', this.JID );
@@ -1660,7 +1660,7 @@ function ClientRosterItem ( roster, jid )
 					var hook					= new XMPPHookIQ();
 					hook.Window					= external.wnd;
 					hook.Callback				= 'ClientRosterVersion';
-					var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+					var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 					dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:version"/></iq>' );
 					dom.documentElement.setAttribute( 'id', hook.Id );
 					dom.documentElement.setAttribute( 'to', this.JID + '/' + resource );
@@ -1857,7 +1857,7 @@ function ClientRosterItem ( roster, jid )
 	 */
 	function SetName ( newname )
 	{
-		var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+		var dom = new ActiveXObject( 'MSXML2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="set"><query><item/></query></iq>' );
 		dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
 		with ( dom.documentElement.firstChild.firstChild )
@@ -1881,7 +1881,7 @@ function ClientRosterItem ( roster, jid )
 	 */
 	function ReRequest ()
 	{
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<presence type="subscribe"/>' );
 		dom.documentElement.setAttribute( 'to', this.JID );
 		warn( 'SENT: ' + dom.xml );
@@ -1902,7 +1902,7 @@ function ClientRosterItem ( roster, jid )
 				for ( var i = 0; i < this.Groups.length; ++i )
 					if ( this.Groups[i] != groupname && ! newGroups.Exists( this.Groups[i] ) )
 						newGroups.Add( this.Groups[i], null );
-				var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+				var dom = new ActiveXObject( 'MSXML2.DOMDocument.6.0' );
 				dom.loadXML( '<iq type="set"><query><item/></query></iq>' );
 				dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
 				var groupnames = ( new VBArray( newGroups.Keys() ) ).toArray();
@@ -1928,7 +1928,7 @@ function ClientRosterItem ( roster, jid )
 			{
 				if ( external.globals( 'block' ).Exists( this.JID ) )
 					dial_block( this.Address );
-				var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+				var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 				dom.loadXML( '<iq type="set"><query xmlns="jabber:iq:roster"><item subscription="remove"/></query></iq>' );
 				dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
 				dom.documentElement.firstChild.firstChild.setAttribute( 'jid', this.JID );

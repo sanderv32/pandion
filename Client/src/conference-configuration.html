@@ -55,7 +55,7 @@ function End ()
 
 	if ( CancelOnExit )
 	{
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="set"><query xmlns="http://jabber.org/protocol/muc#owner"><x xmlns="jabber:x:data" type="cancel"/></query></iq>' );
 		dom.documentElement.setAttribute( 'id', 'sd' + ( ++external.globals( 'uniqueid' ) ) );
 		dom.documentElement.setAttribute( 'to', external.wnd.params[1].Address.ShortAddress() );
@@ -87,7 +87,7 @@ function FormRefresh ()
 	HookIQ.Window	= external.wnd;
 	HookIQ.Callback	= 'ReceiveForm';
 
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/muc#owner"/></iq>' );
 	dom.documentElement.firstChild.setAttribute( 'xml:lang', external.globals( 'language' ) );
 	dom.documentElement.setAttribute( 'id', HookIQ.Id );
@@ -132,7 +132,7 @@ function SubmitForm ()
 {
 	CancelOnExit = false;
 
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.loadXML( '<iq type="set"><query><x type="submit"/></query></iq>' );
 
 	var XDataParser	= new XMPPXData;

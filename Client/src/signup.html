@@ -76,7 +76,7 @@ function Begin ()
 	}
 	else
 	{
-		var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+		var dom = new ActiveXObject( 'MSXML2.DOMDocument.6.0' );
 		dom.async = false;
 		dom.resolveExternals = false;
 		dom.load( external.globals( 'cwd' ) + '..\\settings\\servers.xml' );
@@ -252,7 +252,7 @@ function step1_recv ( iq )
 	gHOOK.Window	= external.wnd;
 	gHOOK.Callback	= 'step2_recv';
 
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:register"/></iq>' );
 	dom.documentElement.setAttribute( 'id', gHOOK.Id );
 	external.windows( 'MainWindow' ).Do( 'warn', 'SENT: ' + dom.xml );
@@ -273,7 +273,7 @@ function step2_recv ( iq )
 		gHOOK.Window	= external.wnd;
 		gHOOK.Callback	= 'step3_recv';
 
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="set"><query><username/><password/></query></iq>' );
 		dom.selectSingleNode( '/iq/query/username' ).text = external.globals( 'cfg' )( 'username' );
 		dom.selectSingleNode( '/iq/query/password' ).text = external.globals( 'cfg' )( 'password' );

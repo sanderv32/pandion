@@ -8,7 +8,7 @@ function OnLoginAuthSend ( iq )
 		hook.Window		= external.wnd;
 		hook.Callback	= 'OnLoginAuthReceive';
 
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="set"><query/></iq>' );
 		dom.documentElement.setAttribute( 'id', hook.Id );
 		dom.documentElement.setAttribute( 'to', external.globals( 'cfg' ).Item( 'server' ) );
@@ -144,7 +144,7 @@ function OnLoginBind ( iq )
 			hook.Callback	= 'OnLoginSession';
 //			hook.From		= external.globals( 'cfg' ).Item( 'server' );
 
-			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 			dom.loadXML( '<iq type="set"><session xmlns="urn:ietf:params:xml:ns:xmpp-session"/></iq>' );
 			dom.documentElement.setAttribute( 'id', hook.Id );
 			dom.documentElement.setAttribute( 'to', external.globals( 'cfg' ).Item( 'server' ) );
@@ -166,7 +166,7 @@ function OnLoginBind ( iq )
 		hook.Window		= external.wnd;
 		hook.Callback	= 'OnLoginBind';
 
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="set"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"/></iq>' );
 		dom.documentElement.setAttribute( 'id', hook.Id );
 		warn( 'SENT: ' + dom.xml );
@@ -201,7 +201,7 @@ function OnLoginSession ( iq )
 		hook.Window		= external.wnd;
 		hook.Callback	= 'OnLoginBind';
 
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="set"><bind xmlns="urn:ietf:params:xml:ns:xmpp-bind"><resource/></bind></iq>' );
 		dom.documentElement.setAttribute( 'id', hook.Id );
 		dom.documentElement.firstChild.firstChild.text = external.globals( 'cfg' ).Item( 'resource' );
@@ -225,7 +225,7 @@ function OnLoginGetDisco ()
 	hook.Callback	= 'OnLoginDiscoItems';
 	hook.From		= external.globals( 'cfg' ).Item( 'server' );
 
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/disco#items"/></iq>' );
 	dom.documentElement.setAttribute( 'id', hook.Id );
 	dom.documentElement.setAttribute( 'to', external.globals( 'cfg' ).Item( 'server' ) );
@@ -258,7 +258,7 @@ function OnLoginDiscoItems ( iq )
 					hook.Callback	= 'OnLoginDiscoInfo';
 					hook.From		= Address.ShortAddress();
 
-					var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+					var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 					dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/disco#info"/></iq>' );
 					dom.documentElement.setAttribute( 'id', hook.Id );
 					dom.documentElement.setAttribute( 'to', Address.ShortAddress() );
@@ -302,7 +302,7 @@ function OnLoginGetBrowse ()
 	hook.Callback	= 'OnLoginBrowse';
 	hook.From		= external.globals( 'cfg' ).Item( 'server' );
 
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:browse"/></iq>' );
 	dom.documentElement.setAttribute( 'id', hook.Id );
 	dom.documentElement.setAttribute( 'to', external.globals( 'cfg' ).Item( 'server' ) );
@@ -329,7 +329,7 @@ function OnLoginBrowse ( iq )
 		hook.Callback	= 'OnLoginAgents';
 		hook.From		= external.globals( 'cfg' ).Item( 'server' );
 
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:agents"/></iq>' );
 		dom.documentElement.setAttribute( 'id', hook.Id );
 		dom.documentElement.setAttribute( 'to', external.globals( 'cfg' ).Item( 'server' ) );
@@ -355,7 +355,7 @@ function OnLoginGetPrivacyLists ()
 	hook.Window		= external.wnd;
 	hook.Callback	= 'OnLoginReceivePrivacyLists';
 
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:privacy"/></iq>' );
 	dom.documentElement.setAttribute( 'id', hook.Id );
 	warn( 'SENT: ' + dom.xml );
@@ -382,7 +382,7 @@ function OnLoginReceivePrivacyLists ( iq )
 			hook.Window		= external.wnd;
 			hook.Callback	= 'OnLoginPrivacySetInvisible';
 
-			var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+			var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 			dom.loadXML( '<iq type="set"><query xmlns="jabber:iq:privacy"><list name="invisible"><item action="deny" order="1"><presence-out/></item></list></query></iq>' );
 			dom.documentElement.setAttribute( 'id', hook.Id );
 			warn( 'SENT: ' + dom.xml );
@@ -421,7 +421,7 @@ function OnLoginGetRoster ()
 	hook.Window		= external.wnd;
 	hook.Callback	= 'OnLoginRoster';
 
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:roster"/></iq>' );
 	dom.documentElement.setAttribute( 'id', hook.Id );
 	warn( 'SENT: ' + dom.xml );
@@ -487,7 +487,7 @@ function OnLoginRoster ( iq )
 
 	/* Activate the fileserver on a random or mapped port
 	 */
-//	external.HTTPEngine.Listen( isNaN( parseInt( external.globals( 'cfg' ).Item( 'filetransferport' ), 10 ) ) ? 0 : parseInt( external.globals( 'cfg' ).Item( 'filetransferport' ), 10 ) );
+	external.HTTPEngine.Listen( isNaN( parseInt( external.globals( 'cfg' ).Item( 'filetransferport' ), 10 ) ) ? 0 : parseInt( external.globals( 'cfg' ).Item( 'filetransferport' ), 10 ) );
 
 	/* Execute any command line actions that were queued while disconnected.
 	 */
@@ -517,7 +517,7 @@ function OnLoginRoster ( iq )
 
 	/* Automatically open bookmarked conference rooms
 	 */
-	var dom					= new ActiveXObject( 'MSXML2.DOMDocument' );
+	var dom					= new ActiveXObject( 'MSXML2.DOMDocument.6.0' );
 	dom.async				= false;
 	dom.resolveExternals	= false;
 	dom.load( external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' ).Item( 'username' ) + '@' + external.globals( 'cfg' ).Item( 'server' ) + '\\bookmarks.xml' );

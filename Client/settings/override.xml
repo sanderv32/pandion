@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+	<emoticon>false</emoticon>
+	<!-- Following setting disable emoticon menu entry -->
+	<disableemoticon>true</disableemoticon>
+</settings>

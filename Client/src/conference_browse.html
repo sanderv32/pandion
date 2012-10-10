@@ -165,7 +165,7 @@ function Refresh ()
 			Service.Name	= external.globals( 'Translator' ).Translate( 'conference_browse', 'bookmarks' );
 			Service.Address	= '';
 
-			var dom					= new ActiveXObject( 'MSXML2.DOMDocument' );
+			var dom					= new ActiveXObject( 'MSXML2.DOMDocument.6.0' );
 			dom.async				= false;
 			dom.resolveExternals	= false;
 			dom.load( external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '\\bookmarks.xml' );
@@ -193,7 +193,7 @@ function Refresh ()
 
 			var Addresses = new ActiveXObject( 'Scripting.Dictionary' );
 
-			var dom = new ActiveXObject( 'MSXML2.DOMDocument' );
+			var dom = new ActiveXObject( 'MSXML2.DOMDocument.6.0' );
 			dom.async = false;
 			dom.resolveExternals = false;
 			dom.load( external.globals( 'cwd' ) + '..\\settings\\servers.xml' );
@@ -241,7 +241,7 @@ function GetServiceInfo ( ServiceAddress )
 		Hook.Window				= external.wnd;
 		gHooks.Add( ServiceAddress, Hook );
 
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/disco#info"/></iq>' );
 		dom.documentElement.setAttribute( 'to', ServiceAddress );
 		dom.documentElement.setAttribute( 'id', Hook.Id );
@@ -275,7 +275,7 @@ function ReceiveServiceInfo ( iq )
 		Hook.Window				= external.wnd;
 		gHooks.Add( ServiceAddress, Hook );
 
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:browse"/></iq>' );
 		dom.documentElement.setAttribute( 'to', ServiceAddress );
 		dom.documentElement.setAttribute( 'id', Hook.Id );
@@ -302,7 +302,7 @@ function GetRoomsList ( ServiceAddress, ServiceName )
 		Hook.Window				= external.wnd;
 		gHooks.Add( ServiceAddress, Hook );
 
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/disco#items"/></iq>' );
 		dom.documentElement.setAttribute( 'to', ServiceAddress );
 		dom.documentElement.setAttribute( 'id', Hook.Id );
@@ -402,7 +402,7 @@ function ReceiveRoomsList ( iq )
 		Hook.Window				= external.wnd;
 		gHooks.Add( ServiceAddress, Hook );
 
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:browse"/></iq>' );
 		dom.documentElement.setAttribute( 'to', ServiceAddress );
 		dom.documentElement.setAttribute( 'id', Hook.Id );
@@ -599,7 +599,7 @@ function RoomContextMenu ( Address )
 	switch ( Menu.Choice )
 	{
 		case 1:
-			var dom					= new ActiveXObject( 'MSXML2.DOMDocument' );
+			var dom					= new ActiveXObject( 'MSXML2.DOMDocument.6.0' );
 			dom.async				= false;
 			dom.resolveExternals	= false;
 			dom.load( external.globals( 'usersdir' ) + 'Profiles\\' + external.globals( 'cfg' )( 'username' ) + '@' + external.globals( 'cfg' )( 'server' ) + '\\bookmarks.xml' );
@@ -737,7 +737,7 @@ function AddService ( ServiceAddress )
 		Hook.Window		= external.wnd;
 		gHooks.Add( ServiceAddress, Hook );
 
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/disco#info"/></iq>' );
 		dom.documentElement.setAttribute( 'to', ServiceAddress );
 		dom.documentElement.setAttribute( 'id', Hook.Id );
@@ -779,7 +779,7 @@ function ReceiveDiscoInfo ( iq )
 		Hook.From		= ServiceAddress;
 		gHooks.Add( ServiceAddress, Hook );
 
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/disco#items"/></iq>' );
 		dom.documentElement.setAttribute( 'to', ServiceAddress );
 		dom.documentElement.setAttribute( 'id', Hook.Id );
@@ -796,7 +796,7 @@ function ReceiveDiscoInfo ( iq )
 		Hook.From		= ServiceAddress;
 		gHooks.Add( ServiceAddress, Hook );
 
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:browse"/></iq>' );
 		dom.documentElement.setAttribute( 'to', ServiceAddress );
 		dom.documentElement.setAttribute( 'id', Hook.Id );
@@ -838,7 +838,7 @@ function ReceiveDiscoItems ( iq )
 					Hook.From		= Address;
 					gHooks.Add( Address, Hook );
 
-					var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+					var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 					dom.loadXML( '<iq type="get"><query xmlns="http://jabber.org/protocol/disco#info"/></iq>' );
 					dom.documentElement.setAttribute( 'id', Hook.Id );
 					dom.documentElement.setAttribute( 'to', Address );
@@ -942,7 +942,7 @@ function ReceiveBrowse ( iq )
 		Hook.From		= ServiceAddress;
 		gHooks.Add( ServiceAddress, Hook );
 
-		var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+		var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 		dom.loadXML( '<iq type="get"><query xmlns="jabber:iq:agents"/></iq>' );
 		dom.documentElement.setAttribute( 'to', ServiceAddress );
 		dom.documentElement.setAttribute( 'id', Hook.Id );

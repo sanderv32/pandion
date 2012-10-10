@@ -103,7 +103,7 @@ function SendMessage ()
 	var url = document.getElementById( 'url' ).value;
 	var contacts = document.getElementById( 'userlist' ).getElementsByTagName( 'NOBR' );
 
-	var dom = new ActiveXObject( 'Msxml2.DOMDocument' );
+	var dom = new ActiveXObject( 'Msxml2.DOMDocument.6.0' );
 	if ( document.getElementById( 'check_url' ).checked )
 	{
 		dom.loadXML( '<message><body/><x xmlns="jabber:x:oob"><url/><desc/></x></message>' );

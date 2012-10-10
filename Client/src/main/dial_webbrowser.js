@@ -10,7 +10,7 @@ function dial_webbrowser (address) {
 			case "roster":
 			case "subscribe":
 				/* Add to contact list */
-				var dom = new ActiveXObject("Msxml2.DOMDocument");
+				var dom = new ActiveXObject("Msxml2.DOMDocument.6.0");
 				dom.loadXML('<iq type="set"><query xmlns="jabber:iq:roster"><item/></query></iq>');
 				dom.documentElement.firstChild.firstChild.setAttribute("jid", xmppUri.ShortAddress());
 				dom.documentElement.setAttribute("to", xmppUri.ShortAddress());
