@@ -23,7 +23,7 @@
 #include "NotifyIcon.h"
 
 CNotifyIcon::CNotifyIcon() :
-	m_text(L""), m_handler(L""), m_hIcon(0)
+	m_text(L""), m_handler(L""), m_hIcon(0), m_info(L""),m_infoTitle(L""),m_timeOut(5)
 {
 }
 CNotifyIcon::~CNotifyIcon()
@@ -43,8 +43,14 @@ STDMETHODIMP CNotifyIcon::init(HWND hWnd, UINT CBMsg)
 
 STDMETHODIMP CNotifyIcon::show()
 {
-	return shellNotify(NIM_ADD);
+	HRESULT result;
+
+	if ((result = shellNotify(NIM_ADD)) == S_OK) {
+		m_created = TRUE;
+	}
+	return result;
 }
+
 STDMETHODIMP CNotifyIcon::update()
 {
 	return shellNotify(NIM_MODIFY);
@@ -53,17 +59,49 @@ STDMETHODIMP CNotifyIcon::remove()
 {
 	return shellNotify(NIM_DELETE);
 }
+
+STDMETHODIMP CNotifyIcon::alert(BSTR From, BSTR Message, DWORD timeOut)
+{
+	m_info = Message;
+	m_infoTitle = From;
+	m_timeOut = timeOut;
+
+	if (!m_created) {
+		show();
+	} else {
+		update();
+	}
+
+	m_info = L"";
+	m_infoTitle = L"";
+	m_timeOut = 0;
+	return S_OK;
+}
+
 STDMETHODIMP CNotifyIcon::shellNotify(DWORD dwMessage)
 {
-	if(!m_CBMsg || !m_hWnd || (m_text.length() == 0 && m_hIcon == 0))
+	if(!m_hWnd || (m_text.length() == 0 && m_hIcon == 0))
 		return S_FALSE;
 
 	NOTIFYICONDATA NotifyIconData;
+	memset(&NotifyIconData, 0, sizeof(NOTIFYICONDATA));
 	NotifyIconData.cbSize = sizeof(NOTIFYICONDATA);
 	NotifyIconData.hWnd = m_hWnd;
 	NotifyIconData.uID = 0;
-	NotifyIconData.uFlags = NIF_MESSAGE;
-	NotifyIconData.uCallbackMessage = m_CBMsg;
+
+	if (m_CBMsg) {
+		NotifyIconData.uFlags |= NIF_MESSAGE;
+		NotifyIconData.uCallbackMessage = m_CBMsg;
+	}
+
+	if (m_info.length() && m_infoTitle.length() && m_timeOut) {
+		NotifyIconData.uTimeout = m_timeOut*1000;
+		NotifyIconData.uFlags |= NIF_INFO;
+		NotifyIconData.dwInfoFlags = (m_hIcon != 0 ? NIIF_USER : NIIF_INFO);
+
+		::StringCchCopy(NotifyIconData.szInfoTitle, 64, m_infoTitle.c_str());
+		::StringCchCopy(NotifyIconData.szInfo, 256, m_info.c_str());
+	}
 
 	if(m_hIcon != 0)
 	{
@@ -77,8 +115,11 @@ STDMETHODIMP CNotifyIcon::shellNotify(DWORD dwMessage)
 		NotifyIconData.uFlags |= NIF_TIP;
 	}
 
-	::Shell_NotifyIcon(dwMessage, &NotifyIconData);
-	return S_OK;
+	if (::Shell_NotifyIcon(dwMessage, &NotifyIconData) == TRUE) {
+		return S_OK;
+	}
+
+	return E_FAIL;
 }
 STDMETHODIMP CNotifyIcon::setText(BSTR text)
 {

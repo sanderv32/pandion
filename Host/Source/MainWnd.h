@@ -31,6 +31,7 @@ private:
 	UINT m_uTaskbarRestart;
 	CNotifyIcon* m_pNotIc;
 
+
 public:
 	MainWnd();
 	~MainWnd();
@@ -47,6 +48,7 @@ public:
 
 	// IPdnWnd
 	STDMETHOD(close)();
+	STDMETHOD(desktopAlert)(BSTR,BSTR,DWORD);
 
 	static HWND	GetMainWindow();
 	static LPCWSTR GetMainWindowClassname();

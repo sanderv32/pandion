@@ -30,8 +30,10 @@ MainWnd::MainWnd() : CPdnWnd(), m_pNotIc(NULL)
 }
 MainWnd::~MainWnd()
 {
-	m_pNotIc->Release();
-	m_pNotIc = NULL;
+	if (m_pNotIc) {
+		m_pNotIc->Release();
+		m_pNotIc = NULL;
+	}
 }
 
 void MainWnd::GetNotifyIcon(VARIANT* pDisp)
@@ -97,7 +99,13 @@ LRESULT MainWnd::OnFinalMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 	PostQuitMessage(0);
 	return CPdnWnd::OnFinalMessage(hWnd, uMsg, wParam, lParam);
 }
-
+STDMETHODIMP MainWnd::desktopAlert(BSTR from, BSTR message, DWORD timeOut)
+{
+	m_pNotIc->AddRef();
+	m_pNotIc->alert(from, message, timeOut);
+	m_pNotIc->Release();
+	return S_OK;
+}
 STDMETHODIMP MainWnd::close()
 {
 	VARIANT* pvElements;

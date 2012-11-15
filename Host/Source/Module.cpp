@@ -98,10 +98,14 @@ void PdnModule::PreMessageLoop(int nShowCmd)
 void PdnModule::RunMessageLoop()
 {
 	MSG msg;
-	while(::GetMessage(&msg, 0, 0, 0))
+
+	while(::GetMessage(&msg, 0, 0, 0) > 0)
 	{
-		::TranslateMessage(&msg);
-		::DispatchMessage(&msg);
+		/* sanderv32 : Temp fix */
+		//if (msg.message != WM_NULL) {
+			::TranslateMessage(&msg);
+			::DispatchMessage(&msg);
+		//}
 	}
 }
 void PdnModule::PostMessageLoop()

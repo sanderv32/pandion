@@ -27,8 +27,8 @@
  * Target Windows 2000 or later:
  * http://msdn.microsoft.com/en-us/library/aa383745(VS.85).aspx
  */
-#define WINVER 0x0500
-#define _WIN32_WINNT 0x0500
+#define WINVER 0x0502
+#define _WIN32_WINNT 0x0502
 
 /*
  * Target Microsoft Internet Explorer 7.0 or later:
@@ -78,10 +78,12 @@
 #include <Mstcpip.h>
 #include <Ntdsapi.h>
 
+
 /*
  * Compiler-specific headers
  */
 #include <comdef.h>
+#include <tchar.h>
 #include <strsafe.h>
 #include <crtdbg.h>
 
@@ -118,7 +120,7 @@
 /*
  * MSXML headers
  */
-#import <msxml3.dll>
+#import <msxml6.dll>
 
 /*
  * Pandion COM interfaces

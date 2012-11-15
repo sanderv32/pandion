@@ -209,6 +209,7 @@ library PandionLib
 		HRESULT hide([in] BOOL b);
 		HRESULT rightToLeft([in] BOOL b);
 		HRESULT flash([in] DWORD u);
+		HRESULT desktopAlert([in] BSTR from, [in] BSTR mess, [in] DWORD timeout);
 		HRESULT resizeable([in] BOOL b);
 		HRESULT showMinBox([in] BOOL b);
 		HRESULT showMaxBox([in] BOOL b);
@@ -280,6 +281,7 @@ library PandionLib
         HRESULT setIcon([in] BSTR, [in] int);
 		HRESULT setHandler([in] BSTR);
 		HRESULT update();
+		HRESULT alert(BSTR From, BSTR Message, DWORD timeOut);
 	}
 	[uuid(9B9FC34D-98CB-4e4d-9D2C-686D023219DD)]
 	interface IPopupMenu : IDispatch

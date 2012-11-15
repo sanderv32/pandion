@@ -149,7 +149,10 @@ HRESULT CPdnWnd::ContainerCreate(bool popup)
 
 	return hr;
 }
-
+STDMETHODIMP CPdnWnd::desktopAlert(BSTR from, BSTR message, DWORD timeOut)
+{
+	return E_NOTIMPL;
+}
 // General Functionality
 void CPdnWnd::ChangeIcon(int icon)
 {

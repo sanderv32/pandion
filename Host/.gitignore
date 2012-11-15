@@ -2,6 +2,9 @@
 *.sdf
 *.sln.cache
 *.suo
+*.opensdf
+*~
+ipch/*
 Intermediate/*
 Source/Host.vcxproj.*
 Source/*.aps

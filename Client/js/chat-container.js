@@ -275,6 +275,7 @@ function SessionTracker ( Address )
 	this.DrawContainerInfo = DrawContainerInfo;
 	this.DrawTyping = DrawTyping;
 	this.Flash = Flash;
+	this.desktopAlert = desktopAlert;
 	this.SendMessage = SendMessage;
 
 	/* Handle events from the SessionPool
@@ -378,6 +379,7 @@ function SessionTracker ( Address )
 
 				/* Notify the user of this message
 				 */
+				this.desktopAlert(Event.Payload, 2);
 				this.Flash( 4 );
 
 				/* Confirm that the message was displayed
@@ -420,6 +422,22 @@ function SessionTracker ( Address )
 		 */
 		if ( ! this.IsActive && ! this.IsFlashing )
 			FlashTab( this.Address.ShortAddress(), Times * 2 );
+	}
+
+	/* Use audio-visual signals to attract attention
+	 */
+	function desktopAlert( Message, timeOut )
+	{
+		/* Show desktop Alert
+		 */
+		var Direction = Message.FromAddress.ShortAddress() == external.globals( 'cfg' ).Item( 'username' ) + '@' + external.globals( 'cfg' ).Item( 'server' ) ? 'send' : 'recv';
+		var From = this.Occupants ?  Message.FromAddress.Resource : ( Direction == 'send' ?  external.globals( 'cfg' ).Item( 'nick' ) : this.Name );
+
+
+		if ( ! external.wnd.isActive() )
+		{
+			external.mainWnd.desktopAlert( From, Message.Body, timeOut );
+		}
 	}
 
 	/* Show or hide the typing indicator

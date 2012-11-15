@@ -43,7 +43,11 @@ class CNotifyIcon :
 
 	/* Describes the icon */
 	std::wstring                m_text;
+	std::wstring                m_info;
+	std::wstring                m_infoTitle;
+	DWORD						m_timeOut;
 	HICON						m_hIcon;
+	BOOL						m_created;
 
 	/* The callback function to send events to the JScript */
     _bstr_t m_handler;
@@ -64,6 +68,8 @@ public:
 	STDMETHOD(setIcon)(BSTR strIcon, int nIndex);
 
 	STDMETHOD(setHandler)(BSTR handler);
+
+	STDMETHOD(alert)(BSTR From, BSTR Message, DWORD timeOut);
 
 	BSTR getHandler();
 };

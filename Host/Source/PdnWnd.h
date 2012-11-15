@@ -64,6 +64,7 @@ protected:
 	IMenuBar*       m_pMenuBar;
 
 	IInternetSecurityManager* m_pSecurityMgr;
+	
 public:
 	CPdnWnd();
 	virtual ~CPdnWnd();
@@ -180,6 +181,7 @@ public:
 	STDMETHOD(hide)(BOOL);
 	STDMETHOD(rightToLeft)(BOOL);
 	STDMETHOD(flash)(DWORD);
+	STDMETHOD(desktopAlert)(BSTR,BSTR,DWORD);
 	STDMETHOD(resizeable)(BOOL);
 	STDMETHOD(showMinBox)(BOOL);
 	STDMETHOD(showMaxBox)(BOOL);

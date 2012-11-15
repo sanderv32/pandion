@@ -164,7 +164,7 @@ STDMETHODIMP External::get_IPs(VARIANT* pStr)
 	_bstr_t retStr = "";
 	for(int i = 0; pHost->h_addr_list[i] != 0; i++)
 	{
-		_stprintf(strAddr, TEXT("%u.%u.%u.%u"),
+		swprintf(strAddr, TEXT("%u.%u.%u.%u"),
 			(UCHAR) pHost->h_addr_list[i][0],
 			(UCHAR) pHost->h_addr_list[i][1],
 			(UCHAR) pHost->h_addr_list[i][2],
