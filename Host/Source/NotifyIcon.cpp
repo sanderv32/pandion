@@ -23,9 +23,11 @@
 #include "NotifyIcon.h"
 
 CNotifyIcon::CNotifyIcon() :
-	m_text(L""), m_handler(L""), m_hIcon(0), m_info(L""),m_infoTitle(L""),m_timeOut(5)
+	m_text(L""), m_handler(L""), m_hIcon(0),
+	m_info(L""), m_infoTitle(L""), m_timeOut(5)
 {
 }
+
 CNotifyIcon::~CNotifyIcon()
 {
 	if(m_hIcon != 0)
@@ -48,16 +50,25 @@ STDMETHODIMP CNotifyIcon::show()
 	if ((result = shellNotify(NIM_ADD)) == S_OK) {
 		m_created = TRUE;
 	}
+
 	return result;
 }
 
 STDMETHODIMP CNotifyIcon::update()
 {
+	if (!m_created) {
+		return show();
+	}
+
 	return shellNotify(NIM_MODIFY);
 }
 STDMETHODIMP CNotifyIcon::remove()
 {
-	return shellNotify(NIM_DELETE);
+	if (m_created) {
+		return shellNotify(NIM_DELETE);
+	}
+
+	return S_OK;
 }
 
 STDMETHODIMP CNotifyIcon::alert(BSTR From, BSTR Message, DWORD timeOut)
@@ -66,16 +77,14 @@ STDMETHODIMP CNotifyIcon::alert(BSTR From, BSTR Message, DWORD timeOut)
 	m_infoTitle = From;
 	m_timeOut = timeOut;
 
-	if (!m_created) {
-		show();
-	} else {
-		update();
+	_try {
+		return update();
+	} _finally {
+		m_info = L"";
+		m_infoTitle = L"";
+		m_timeOut = 0;
 	}
-
-	m_info = L"";
-	m_infoTitle = L"";
-	m_timeOut = 0;
-	return S_OK;
+//	return S_OK;
 }
 
 STDMETHODIMP CNotifyIcon::shellNotify(DWORD dwMessage)
@@ -84,7 +93,8 @@ STDMETHODIMP CNotifyIcon::shellNotify(DWORD dwMessage)
 		return S_FALSE;
 
 	NOTIFYICONDATA NotifyIconData;
-	memset(&NotifyIconData, 0, sizeof(NOTIFYICONDATA));
+	ZeroMemory(&NotifyIconData, sizeof(NOTIFYICONDATA));
+
 	NotifyIconData.cbSize = sizeof(NOTIFYICONDATA);
 	NotifyIconData.hWnd = m_hWnd;
 	NotifyIconData.uID = 0;
@@ -100,7 +110,7 @@ STDMETHODIMP CNotifyIcon::shellNotify(DWORD dwMessage)
 		NotifyIconData.dwInfoFlags = (m_hIcon != 0 ? NIIF_USER : NIIF_INFO);
 
 		::StringCchCopy(NotifyIconData.szInfoTitle, 64, m_infoTitle.c_str());
-		::StringCchCopy(NotifyIconData.szInfo, 256, m_info.c_str());
+		::StringCchCopy(NotifyIconData.szInfo, 200, m_info.c_str());
 	}
 
 	if(m_hIcon != 0)
