@@ -22,10 +22,51 @@
 #include "stdafx.h"
 #include "NotifyIcon.h"
 
+#define SHELLDLL_WIN2K_OR_LATER		0x00050000
+#define SHELLDLL_WINXP_OR_LATER		0x00060000
+#define SHELLDLL_WIN7_OR_LATER		0x00060001
+
+#ifndef NIF_REALTIME 
+#define NIF_REALTIME				0x00000040
+#endif
+
+#ifndef NIF_SHOWTIP
+#define NIF_SHOWTIP					0x00000080
+#endif
+
+#ifndef NIIF_RESPECT_QUIET_TIME
+#define NIIF_RESPECT_QUIET_TIME		0x00000080
+#endif
+
 CNotifyIcon::CNotifyIcon() :
 	m_text(L""), m_handler(L""), m_hIcon(0),
-	m_info(L""), m_infoTitle(L""), m_timeOut(5)
+	m_info(L""), m_infoTitle(L""), m_timeOut(5),
+	m_shellDllVersion(0),
+	m_shellDllBuild(0)
 {
+	TCHAR shellDll[MAX_PATH];
+
+	if (SUCCEEDED(::SHGetFolderPath(NULL, CSIDL_SYSTEM, 0, NULL, shellDll))) {
+		::PathAppend(shellDll, TEXT("shell32.dll"));
+
+		HMODULE hShellDll = ::LoadLibrary(shellDll);
+		if (hShellDll != NULL) {
+			DLLGETVERSIONPROC DllGetVersion = (DLLGETVERSIONPROC)::GetProcAddress(hShellDll, "DllGetVersion");
+
+			if (DllGetVersion != NULL) {
+				DLLVERSIONINFO dvi;
+				::ZeroMemory(&dvi, sizeof(DLLVERSIONINFO));
+				dvi.cbSize = sizeof(DLLVERSIONINFO);
+
+				if (SUCCEEDED(DllGetVersion(&dvi))) {
+					m_shellDllVersion = MAKELONG(dvi.dwMinorVersion, dvi.dwMajorVersion);
+					m_shellDllBuild = dvi.dwBuildNumber;
+				}
+			}
+
+			::FreeLibrary(hShellDll);
+		}
+	}
 }
 
 CNotifyIcon::~CNotifyIcon()
@@ -56,19 +97,11 @@ STDMETHODIMP CNotifyIcon::show()
 
 STDMETHODIMP CNotifyIcon::update()
 {
-	if (!m_created) {
-		return show();
-	}
-
 	return shellNotify(NIM_MODIFY);
 }
 STDMETHODIMP CNotifyIcon::remove()
 {
-	if (m_created) {
-		return shellNotify(NIM_DELETE);
-	}
-
-	return S_OK;
+	return shellNotify(NIM_DELETE);
 }
 
 STDMETHODIMP CNotifyIcon::alert(BSTR From, BSTR Message, DWORD timeOut)
@@ -77,14 +110,17 @@ STDMETHODIMP CNotifyIcon::alert(BSTR From, BSTR Message, DWORD timeOut)
 	m_infoTitle = From;
 	m_timeOut = timeOut;
 
-	_try {
-		return update();
-	} _finally {
-		m_info = L"";
-		m_infoTitle = L"";
-		m_timeOut = 0;
+	if (!m_created) {
+		show();
+	} else {
+		update();
 	}
-//	return S_OK;
+
+	m_info = L"";
+	m_infoTitle = L"";
+	m_timeOut = 0;
+
+	return S_OK;
 }
 
 STDMETHODIMP CNotifyIcon::shellNotify(DWORD dwMessage)
@@ -97,7 +133,6 @@ STDMETHODIMP CNotifyIcon::shellNotify(DWORD dwMessage)
 
 	NotifyIconData.cbSize = sizeof(NOTIFYICONDATA);
 	NotifyIconData.hWnd = m_hWnd;
-	NotifyIconData.uID = 0;
 
 	if (m_CBMsg) {
 		NotifyIconData.uFlags |= NIF_MESSAGE;
@@ -107,7 +142,19 @@ STDMETHODIMP CNotifyIcon::shellNotify(DWORD dwMessage)
 	if (m_info.length() && m_infoTitle.length() && m_timeOut) {
 		NotifyIconData.uTimeout = m_timeOut*1000;
 		NotifyIconData.uFlags |= NIF_INFO;
-		NotifyIconData.dwInfoFlags = (m_hIcon != 0 ? NIIF_USER : NIIF_INFO);
+		NotifyIconData.dwInfoFlags |= (m_hIcon != 0 ? NIIF_USER : NIIF_INFO);
+
+		if (m_shellDllVersion >= SHELLDLL_WINXP_OR_LATER) {
+			NotifyIconData.dwInfoFlags |= NIIF_NOSOUND;
+
+			if (m_shellDllBuild >= 6) {
+				NotifyIconData.uFlags |= NIF_REALTIME;
+			}
+		}
+
+		if (m_shellDllVersion >= SHELLDLL_WIN7_OR_LATER) {
+			NotifyIconData.dwInfoFlags |= NIIF_RESPECT_QUIET_TIME;
+		}
 
 		::StringCchCopy(NotifyIconData.szInfoTitle, 64, m_infoTitle.c_str());
 		::StringCchCopy(NotifyIconData.szInfo, 200, m_info.c_str());

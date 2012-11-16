@@ -48,6 +48,8 @@ class CNotifyIcon :
 	DWORD						m_timeOut;
 	HICON						m_hIcon;
 	BOOL						m_created;
+	DWORD						m_shellDllVersion;
+	DWORD						m_shellDllBuild;
 
 	/* The callback function to send events to the JScript */
     _bstr_t m_handler;
