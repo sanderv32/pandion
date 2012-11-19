@@ -92,7 +92,7 @@ function Begin ()
 	document.attachEvent( 'onmouseout',		Play );
 
 	external.wnd.animate( 0x00000008 | 0x00040000, 125 );
-	gTimeout = setTimeout( 'Close()', 10000 );
+	gTimeout = setTimeout( 'Close()', (Headline.TTL || 10)*1000);
 }
 
 function Click ()

@@ -437,6 +437,16 @@ function SessionTracker ( Address )
 		if ( ! external.wnd.isActive() )
 		{
 			external.mainWnd.desktopAlert( From, Message.Body, timeOut );
+
+			var Toaster = new Headline();
+			Toaster.Archive = false;
+			Toaster.ShowOptions = false;
+			Toaster.Address = From;
+			Toaster.Title = From;
+			Toaster.Message = Message.Body;
+			Toaster.TTL = timeOut;
+			Toaster.Width = 300;
+			Toaster.Show();
 		}
 	}
 

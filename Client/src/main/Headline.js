@@ -11,6 +11,8 @@ function Headline ()
 	this.OpenArchive		= false;
 	this.OpenHyperlink		= '';
 	this.OpenConversation	= null;
+	this.Height = 120;
+	this.Width = 200;
 
 	this.Show				= Show;
 
@@ -32,8 +34,8 @@ function Headline ()
 				showTitlebar( false );
 				MinHeight = MinWidth = 0;
 				setAOT( true );
-				setSize( 200, 120 );
-				setPos( screen.availWidth - 218, screen.availHeight - i * 120 );
+				setSize( this.Width, this.Height );
+				setPos( screen.availWidth - (this.Width - 2), screen.availHeight - i * this.Height );
 			}
 	}
 }
