@@ -17,7 +17,7 @@
  * Filename:    PdnWnd.cpp
  * Author(s):   Dries Staelens
  * Copyright:   Copyright (c) 2009 Dries Staelens
- * Description: TODOTODOTODO
+ * Description: TODOTODOTODOTODO
  */
 
 #include "stdafx.h"
