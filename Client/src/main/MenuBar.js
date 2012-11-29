@@ -12,6 +12,7 @@ function MenuBarErase ()
 function MenuBarUpdate ( section )
 {
 	var cfg = external.globals( 'cfg' );
+	var dissettings = cfg && cfg('disablesettings').toString() == 'true';
 	var connected = external.globals( 'XMPPConnected' );
 	var mode = cfg && connected ? cfg( 'lastmode' ) : -1;
 	var sspi = external.globals( 'sspiserver' ).length;
@@ -111,15 +112,15 @@ function MenuBarUpdate ( section )
 		}
 
 		var tools = external.newPopupMenu;
-		tools.AddItem( connected,false,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_transport' ), 36 );
-		tools.AddItem( roster,false,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_head' ), 30 );
-		tools.AddItem( roster,false,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_plugin' ), 37 );
-		tools.AddSeparator();
+//		tools.AddItem( connected,false,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_transport' ), 36 );
+//		tools.AddItem( roster,false,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_head' ), 30 );
+//		tools.AddItem( roster,false,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_plugin' ), 37 );
+//		tools.AddSeparator();
 		tools.AddItem( roster,false,false,false, display.Handle,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_view' ), 33 );
 		tools.AddItem( true,false,false,false, language.Handle,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_language' ), 38 );
 		tools.AddItem( true,aot,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_aot' ), 34 );
-		tools.AddSeparator();
-		tools.AddItem( roster,false,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_settings' ), 35 );
+		if (!dissettings) tools.AddSeparator();
+		if (!dissettings) tools.AddItem( roster,false,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_settings' ), 35 );
 
 		external.wnd.menuBar.AddItem( external.globals( 'Translator' ).Translate( 'main', 'menu_tool' ), 2, 3, tools );
 	}
@@ -129,18 +130,18 @@ function MenuBarUpdate ( section )
 		external.wnd.menuBar.RemItem( 4 );
 
 		var help = external.newPopupMenu;
-		help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_welcome' ), 45 );
-		help.AddSeparator();
+//		help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_welcome' ), 45 );
+//		help.AddSeparator();
 		if ( external.globals( 'helpmanual' ).length )
 			help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_manual' ), 40 );
-		if ( external.globals( 'helpforum' ).length )
-			help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_forum' ), 41 );
-		if ( external.globals( 'helpcontact' ).length )
-			help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_contact' ), 42 );
-		if ( external.globals( 'helpmanual' ).length || external.globals( 'helpforum' ).length || external.globals( 'helpcontact' ).length )
-			help.AddSeparator();
-		help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_update' ), 43 );
-		help.AddSeparator();
+//		if ( external.globals( 'helpforum' ).length )
+//			help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_forum' ), 41 );
+//		if ( external.globals( 'helpcontact' ).length )
+//			help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_contact' ), 42 );
+//		if ( external.globals( 'helpmanual' ).length || external.globals( 'helpforum' ).length || external.globals( 'helpcontact' ).length )
+//			help.AddSeparator();
+//		help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_update' ), 43 );
+//		help.AddSeparator();
 		help.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_help_about' ), 44 );
 
 		external.wnd.menuBar.AddItem( external.globals( 'Translator' ).Translate( 'main', 'menu_help' ), 3, 4, help );

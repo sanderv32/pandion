@@ -114,9 +114,8 @@ STDMETHODIMP HTTP::GetLength(DWORD sessionID, DWORD* retval)
 }
 STDMETHODIMP HTTP::Abort(DWORD sessionID)
 {
-	try {
+	if (m_Sessions.size() > 1) {
 		m_Sessions[sessionID]->Abort();
-	} catch(int e) {
 	}
 	return S_OK;
 }

@@ -300,7 +300,7 @@ function FilterEmoticons ( Message, HTMLElement, MessageText )
 
 	var Subset = external.globals( 'EmoticonCache' ).GetSubset( Message.EmoticonSet, Languages );
 
-	if ( Subset && external.globals( 'cfg' ).Item( 'emoticon' ).toString() == 'true' )
+	if ( Subset && external.globals( 'cfg' ).Item( 'emoticon' ).toString() == 'never' )
 	{
 		var Result = null;
 		while ( Result = Subset.Expression.exec( MessageText ) )

@@ -38,6 +38,11 @@
 #define NIIF_RESPECT_QUIET_TIME		0x00000080
 #endif
 
+// {23758EB3-3116-4203-8796-20334285F415}
+static const GUID pandionGUID = 
+{ 0x23758eb3, 0x3116, 0x4203, { 0x87, 0x96, 0x20, 0x33, 0x42, 0x85, 0xf4, 0x15 } };
+
+
 CNotifyIcon::CNotifyIcon() :
 	m_text(L""), m_handler(L""), m_hIcon(0),
 	m_info(L""), m_infoTitle(L""), m_timeOut(5),
@@ -150,6 +155,8 @@ STDMETHODIMP CNotifyIcon::shellNotify(DWORD dwMessage)
 			if (m_shellDllBuild >= 6) {
 				NotifyIconData.uFlags |= NIF_REALTIME;
 			}
+
+			NotifyIconData.guidItem = pandionGUID;
 		}
 
 		if (m_shellDllVersion >= SHELLDLL_WIN7_OR_LATER) {

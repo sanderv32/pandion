@@ -250,7 +250,12 @@ LRESULT CPdnWnd::WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	}
 	else if(uMsg == WM_PARENTNOTIFY && wParam == WM_DESTROY)
 	{
-		return (::IsWindow(m_hWnd) && ::DestroyWindow(m_hWnd));
+		if (::IsWindow(m_hWnd)) {
+			::DestroyWindow(m_hWnd);
+			m_hWnd = NULL;
+			return TRUE;
+		}
+		return FALSE;
 	}
 	else if(uMsg == WM_SYSCOMMAND)
 	{

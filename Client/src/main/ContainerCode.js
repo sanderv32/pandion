@@ -708,6 +708,9 @@ function ResizeStartTracking ()
 {
 	if ( ! gResizeInterval )
 	{
+		var cfg = external.globals('cfg');
+		var distoolbar = cfg('disabletoolbar').toString() == 'true';
+
 		if ( ! gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Occupants )
 			document.getElementById( 'send-text' ).detachEvent( 'onpropertychange', Typing );
 		document.attachEvent( 'onmouseup', ResizeStopTracking );
@@ -716,9 +719,11 @@ function ResizeStartTracking ()
 		document.frames( 'iframe-' + gContainer.ActiveTrackerAddress ).document.attachEvent( 'onmouseup', ResizeStopTracking );
 		document.body.style.cursor = 'n-resize';
 		document.getElementById( 'toolbar-wrapper' ).childNodes(0).style.backgroundColor = 'black';
-		document.getElementById( 'toolbar-wrapper' ).childNodes(1).style.cursor = 'n-resize';
-		document.getElementById( 'toolbar-wrapper' ).childNodes(2).style.cursor = 'n-resize';
-		document.getElementById( 'toolbar-wrapper' ).childNodes(3).style.cursor = 'n-resize';
+		if (!distoolbar) {
+			document.getElementById( 'toolbar-wrapper' ).childNodes(1).style.cursor = 'n-resize';
+			document.getElementById( 'toolbar-wrapper' ).childNodes(2).style.cursor = 'n-resize';
+			document.getElementById( 'toolbar-wrapper' ).childNodes(3).style.cursor = 'n-resize';
+		}
 		document.getElementById( 'mode-bar' ).style.cursor = 'n-resize';
 		document.getElementById( 'send-text' ).style.cursor = 'n-resize';
 		document.frames( 'iframe-' + gContainer.ActiveTrackerAddress ).document.body.style.cursor = 'n-resize';
@@ -731,15 +736,20 @@ function ResizeStopTracking ()
 {
 	if ( gResizeInterval )
 	{
+		var cfg = external.globals('cfg');
+		var distoolbar = cfg('disabletoolbar').toString() == 'true';
+
 		clearTimeout( gResizeInterval );
 		gResizeInterval = null;
 		document.detachEvent( 'onmouseup', ResizeStopTracking );
 		document.frames( 'iframe-' + gContainer.ActiveTrackerAddress ).document.detachEvent( 'onmouseup', ResizeStopTracking );
 		document.body.style.cursor = '';
 		document.getElementById( 'toolbar-wrapper' ).childNodes(0).style.backgroundColor = '';
-		document.getElementById( 'toolbar-wrapper' ).childNodes(1).style.cursor = '';
-		document.getElementById( 'toolbar-wrapper' ).childNodes(2).style.cursor = '';
-		document.getElementById( 'toolbar-wrapper' ).childNodes(3).style.cursor = '';
+		if (!distoolbar) {
+			document.getElementById( 'toolbar-wrapper' ).childNodes(1).style.cursor = '';
+			document.getElementById( 'toolbar-wrapper' ).childNodes(2).style.cursor = '';
+			document.getElementById( 'toolbar-wrapper' ).childNodes(3).style.cursor = '';
+		}
 		document.getElementById( 'mode-bar' ).style.cursor = gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Occupants ? 'default' : 'hand';
 		document.getElementById( 'send-text' ).style.cursor = '';
 		document.frames( 'iframe-' + gContainer.ActiveTrackerAddress ).document.body.style.cursor = '';

@@ -3,4 +3,7 @@
 	<emoticon>false</emoticon>
 	<!-- Following setting disable emoticon menu entry -->
 	<disableemoticon>true</disableemoticon>
+	<disablebackground>true</disablebackground>
+	<disablefont>true</disablefont>
+	<disablesettings>true</disablesettings>
 </settings>

@@ -3,20 +3,12 @@
 
 <!-- Used in various locations throughout the interface.
      Translate to another script by adding the xml:lang attribute. -->
-<softwarename>Pandion</softwarename>
-<softwarename xml:lang="ar">بانديون</softwarename>
-<softwarename xml:lang="bg">Пандион</softwarename>
-<softwarename xml:lang="hi">पैन्डीऑन</softwarename>
-<softwarename xml:lang="ja">パンディオン</softwarename>
-<softwarename xml:lang="ru">Пандион</softwarename>
-<softwarename xml:lang="ur">پندین</softwarename> 
-<softwarename xml:lang="vn">Pan-di-on</softwarename>
-<softwarename xml:lang="zh">潘迪安</softwarename>
+<softwarename>ATPI Pandion</softwarename>
 
 <!-- Used as name of files and directories.
      Must not contain / \ : * ? " < > |
 	 Should not be transliterated. -->
-<softwarenamesafe>Pandion</softwarenamesafe>
+<softwarenamesafe>ATPI Pandion</softwarenamesafe>
 
 <!-- Major and minor version (x.y) of the application.
      Build number is appended automatically from built.txt. -->
@@ -43,9 +35,9 @@
 <fixedserver></fixedserver>
 
 <!-- Shown in the Help menu -->
-<helpcontact>http://pandion.im/about</helpcontact>
-<helpforum>http://getsatisfaction.com/pandion</helpforum>
-<helpmanual>http://pandion.pbworks.com/</helpmanual>
+<helpcontact>http://www.atpi.com</helpcontact>
+<helpforum>http://www.atpi.com</helpforum>
+<helpmanual>http://www.atpi.com/</helpmanual>
 
 <!-- URI of extras -->
 <pluginlist>http://plugins.pandion.im/</pluginlist>
@@ -54,10 +46,10 @@
 
 <!-- URI of software version checker (Atom 1.0 + Appcaster) -->
 <autoupdate>http://feeds.feedburner.com/pandionupdates</autoupdate>
-<installupdates>yes</installupdates> <!-- yes/no -->
+<installupdates>no</installupdates> <!-- yes/no -->
 
 <!-- Shown in the Welcome screen -->
-<welcomescreen>yes</welcomescreen>
+<welcomescreen>no</welcomescreen>
 <welcomefeedurl>http://feeds.feedburner.com/pandiongetsatisfaction</welcomefeedurl>
 <welcomesearchurl>http://getsatisfaction.com/pandion/searches?query=${query}&amp;commit=Search</welcomesearchurl>
 <twittername>pandion</twittername>
@@ -84,7 +76,7 @@
 <!-- Connection settings dialog -->
 <serveraddress></serveraddress>
 <serverport></serverport>
-<encryption>optional</encryption> <!-- optional/tls/ssl/none -->
+<encryption>tls</encryption> <!-- optional/tls/ssl/none -->
 <authentication>normal</authentication> <!-- normal/ntlm -->
 
 </brand>

@@ -436,8 +436,6 @@ function SessionTracker ( Address )
 
 		if ( ! external.wnd.isActive() )
 		{
-			external.mainWnd.desktopAlert( From, Message.Body, timeOut );
-
 			var Toaster = new Headline();
 			Toaster.Archive = false;
 			Toaster.ShowOptions = false;
@@ -1127,7 +1125,7 @@ function MenuBarUpdate ( section )
 		external.wnd.menuBar.RemItem( 1 );
 
 		var file = external.newPopupMenu;
-		file.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_file_received' ), 10 );
+//		file.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_file_received' ), 10 );
 		file.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_file_history' ), 11 );
 		file.AddSeparator();
 		file.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_file_close' ), 12 );
@@ -1155,7 +1153,7 @@ function MenuBarUpdate ( section )
 		actions.AddItem( true, false, false, false, contact.Handle, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_axn_contact' ), 20 );
 		actions.AddSeparator();
 		actions.AddItem( Connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_axn_profile' ), 22 );
-		actions.AddItem( Connected && IsOnline, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_axn_file' ), 23 );
+//		actions.AddItem( Connected && IsOnline, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_axn_file' ), 23 );
 
 		external.wnd.menuBar.AddItem( external.globals( 'Translator' ).Translate( 'main', 'menu_axn' ), 1, 2, actions );
 	}
@@ -1169,18 +1167,20 @@ function MenuBarUpdate ( section )
 		var tabs = cfg( 'tabbedchat' ).toString() == 'true';
 		var emo = cfg( 'emoticon' ).toString() == 'true';
 		var disemo = cfg( 'disableemoticon' ).toString() == 'true';
+		var disbg = cfg( 'disablebackground' ).toString() == 'true';
+		var disfont = cfg( 'disablefont' ).toString() == 'true';
+		var dissettings = cfg('disablesettings').toString() == 'true';
 
 		var tools = external.newPopupMenu;
-		tools.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_emo_style' ), 36 );
-		tools.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_font' ), 30 );
-		tools.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_background' ),37 );
-		tools.AddSeparator();
+		if (!disemo) tools.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_emo_style' ), 36 );
+		if (!disfont) tools.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_font' ), 30 );
+		if (!disbg) tools.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_background' ),37 );
+		if (!disemo || !disbg || !disfont) tools.AddSeparator();
 		tools.AddItem( true, aot, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_aot' ), 31 );
 		tools.AddItem( true, tabs, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_tabbed' ), 33 );
-		if (!disemo)
-			tools.AddItem( true, emo, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_emoticons' ), 34 );
-		tools.AddSeparator();
-		tools.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_settings' ), 35 );
+		if (!disemo) tools.AddItem( true, emo, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_emoticons' ), 34 );
+		if (!dissettings) tools.AddSeparator();
+		if (!dissettings) tools.AddItem( true, false, false, false, 0, external.globals( 'Translator' ).Translate( 'chat-container', 'menu_tool_settings' ), 35 );
 
 		external.wnd.menuBar.AddItem( external.globals( 'Translator' ).Translate( 'main', 'menu_tool' ), 2, 3, tools );
 	}
@@ -1243,9 +1243,9 @@ function MenuBarSelect ( id )
 		case 22: // view profile
 			external.wnd.params[0].dial_userinfo( gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Address );
 			break;
-		case 23: // send file
-			external.wnd.params[0].dial_file( gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Address );
-			break;
+//		case 23: // send file
+//			external.wnd.params[0].dial_file( gContainer.Trackers.Item( gContainer.ActiveTrackerAddress ).Address );
+//			break;
 
 		case 30: // font
 			dial_font();
