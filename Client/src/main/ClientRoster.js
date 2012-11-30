@@ -204,7 +204,8 @@ function ClientRosterContextMenu ()
 {
 	event.cancelBubble = true;
 
-	var cfg			= external.globals( 'cfg' );
+	var cfg		= external.globals( 'cfg' );
+	var dissettings = cfg && cfg('disablesettings').toString() == 'true'
 	var ViewSize	= cfg( 'contactlistdisplay' ) == 'detailed';
 
 	var Display = external.newPopupMenu;
@@ -216,8 +217,10 @@ function ClientRosterContextMenu ()
 	Menu.AddItem( true, false, false, false, 0,					external.globals( 'Translator' ).Translate( 'main', 'menu_axn_addgroup' ),	2 );
 	Menu.AddSeparator();
 	Menu.AddItem( true, false, false, false, Display.Handle,	external.globals( 'Translator' ).Translate( 'main', 'menu_tool_view' ),		3 );
-	Menu.AddSeparator();
-	Menu.AddItem( true, false, false, false, 0,					external.globals( 'Translator' ).Translate( 'main', 'menu_tool_settings' ),	4 );
+	if (!dissettings) {
+		Menu.AddSeparator();
+		Menu.AddItem( true, false, false, false, 0,					external.globals( 'Translator' ).Translate( 'main', 'menu_tool_settings' ),	4 );
+	}
 	Menu.Show( event.screenX, event.screenY, external.globals( 'Translator' ).Direction );
 
 	switch ( Menu.Choice )

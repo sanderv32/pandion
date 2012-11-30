@@ -49,28 +49,22 @@ CNotifyIcon::CNotifyIcon() :
 	m_shellDllVersion(0),
 	m_shellDllBuild(0)
 {
-	TCHAR shellDll[MAX_PATH];
+	HMODULE hShellDll = ::LoadLibrary(L"shell32.dll");
+	if (hShellDll != NULL) {
+		DLLGETVERSIONPROC DllGetVersion = (DLLGETVERSIONPROC)::GetProcAddress(hShellDll, "DllGetVersion");
 
-	if (SUCCEEDED(::SHGetFolderPath(NULL, CSIDL_SYSTEM, 0, NULL, shellDll))) {
-		::PathAppend(shellDll, TEXT("shell32.dll"));
+		if (DllGetVersion != NULL) {
+			DLLVERSIONINFO dvi;
+			::ZeroMemory(&dvi, sizeof(DLLVERSIONINFO));
+			dvi.cbSize = sizeof(DLLVERSIONINFO);
 
-		HMODULE hShellDll = ::LoadLibrary(shellDll);
-		if (hShellDll != NULL) {
-			DLLGETVERSIONPROC DllGetVersion = (DLLGETVERSIONPROC)::GetProcAddress(hShellDll, "DllGetVersion");
-
-			if (DllGetVersion != NULL) {
-				DLLVERSIONINFO dvi;
-				::ZeroMemory(&dvi, sizeof(DLLVERSIONINFO));
-				dvi.cbSize = sizeof(DLLVERSIONINFO);
-
-				if (SUCCEEDED(DllGetVersion(&dvi))) {
-					m_shellDllVersion = MAKELONG(dvi.dwMinorVersion, dvi.dwMajorVersion);
-					m_shellDllBuild = dvi.dwBuildNumber;
-				}
+			if (SUCCEEDED(DllGetVersion(&dvi))) {
+				m_shellDllVersion = MAKELONG(dvi.dwMinorVersion, dvi.dwMajorVersion);
+				m_shellDllBuild = dvi.dwBuildNumber;
 			}
-
-			::FreeLibrary(hShellDll);
 		}
+
+		::FreeLibrary(hShellDll);
 	}
 }
 
