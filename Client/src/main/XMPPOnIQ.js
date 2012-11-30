@@ -103,8 +103,14 @@ function XMPPOnIQ ( ReceivedXML )
 		dom.documentElement.setAttribute( 'to', iq.From );
 		if ( iq.Id.length )
 			dom.documentElement.setAttribute( 'id', iq.Id );
-		dom.selectSingleNode( '/iq/query/name' ).text = external.globals( 'softwarename' );
-		dom.selectSingleNode( '/iq/query/version' ).text = external.globals( 'softwareversion' );
+		var node = dom.selectSingleNode( '/iq/query/name' );
+		if (node && node.text) {
+			node.text = external.globals( 'softwarename' );
+		}
+		node = dom.selectSingleNode( '/iq/query/version' );
+		if (node && node.text) {
+			node.text = external.globals( 'softwareversion' );
+		}
 		( /(Windows[^;\)]+)/ ).test( navigator.appVersion );
 		var Windows = RegExp.$1;
 		if ( Windows == 'Windows NT 5.0' )
@@ -117,7 +123,10 @@ function XMPPOnIQ ( ReceivedXML )
 			Windows = 'Windows Vista';
 		else if ( Windows == 'Windows NT 6.1' )
 			Windows = 'Windows 7';
-		dom.selectSingleNode( '/iq/query/os' ).text = Windows + ' (' + navigator.userLanguage + ')';
+		node = dom.selectSingleNode( '/iq/query/os' );
+		if (node && node.text) {
+			node.text = Windows + ' (' + navigator.userLanguage + ')';
+		}
 		warn( 'SENT: ' + dom.xml );
 		external.XMPP.SendXML( dom );
 	}
@@ -166,7 +175,10 @@ function XMPPOnIQ ( ReceivedXML )
 			dom.documentElement.setAttribute( 'to', iq.From );
 			if ( iq.Id.length )
 				dom.documentElement.setAttribute( 'id', iq.Id );
-			dom.selectSingleNode( '/iq/ns:query/ns:data' ).text = external.File( external.globals( 'usersdir' ) + 'My Avatars\\' + external.globals( 'cfg' ).Item( 'avatar' ) ).ReadBase64();
+			var node = dom.selectSingleNode( '/iq/ns:query/ns:data' );
+			if (node && node.text) {
+				node.text = external.File( external.globals( 'usersdir' ) + 'My Avatars\\' + external.globals( 'cfg' ).Item( 'avatar' ) ).ReadBase64();
+			}
 			warn( 'SENT: ' + dom.xml );
 			external.XMPP.SendXML( dom );
 		}
