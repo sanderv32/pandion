@@ -77,6 +77,10 @@
 #include <WinInet.h>
 #include <Mstcpip.h>
 #include <Ntdsapi.h>
+#include <signal.h>
+#include <DbgHelp.h>
+
+
 
 
 /*

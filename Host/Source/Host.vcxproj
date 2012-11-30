@@ -185,6 +185,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Base64.h" />
+    <ClInclude Include="CrashHandler.h" />
     <ClInclude Include="DispInterfaceImpl.h" />
     <ClInclude Include="Hash.h" />
     <ClInclude Include="SRVLookup.h" />
@@ -225,6 +226,7 @@
     <ClInclude Include="PopupMenu.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CrashHandler.cpp" />
     <ClCompile Include="Hash.cpp" />
     <ClCompile Include="SRVLookup.cpp" />
     <ClCompile Include="stdafx.cpp">

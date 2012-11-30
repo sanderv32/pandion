@@ -23,9 +23,14 @@
 #include "NotifyIcon.h"
 #include "Module.h"
 #include "MainWnd.h"
+#include "CrashHandler.h"
 
-MainWnd::MainWnd() : CPdnWnd(), m_pNotIc(NULL)
+MainWnd::MainWnd() : CPdnWnd(), m_pNotIc(NULL), m_crashHandler(NULL)
 {
+	m_crashHandler = new CCrashHandler();
+	m_crashHandler->SetProcessExceptionHandlers();
+	m_crashHandler->SetThreadExceptionHandlers();
+
 	m_WindowClass.lpszClassName = GetMainWindowClassname();
 }
 MainWnd::~MainWnd()
@@ -33,6 +38,11 @@ MainWnd::~MainWnd()
 	if (m_pNotIc) {
 		m_pNotIc->Release();
 		m_pNotIc = NULL;
+	}
+
+	if (m_crashHandler != NULL) {
+		delete m_crashHandler;
+		m_crashHandler = NULL;
 	}
 }
 

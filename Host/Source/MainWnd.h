@@ -22,7 +22,9 @@
 #pragma once
 #include "PdnWnd.h"
 
+
 class CNotifyIcon;
+class CCrashHandler;
 
 class MainWnd : 
 	public CPdnWnd
@@ -30,6 +32,8 @@ class MainWnd :
 private:
 	UINT m_uTaskbarRestart;
 	CNotifyIcon* m_pNotIc;
+	CCrashHandler* m_crashHandler;
+
 
 
 public:
