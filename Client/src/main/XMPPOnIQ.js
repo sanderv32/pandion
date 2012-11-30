@@ -139,8 +139,14 @@ function XMPPOnIQ ( ReceivedXML )
 			var h = getHours().toString();
 			var m = getMinutes().toString();
 			var s = getSeconds().toString();
-			dom.selectSingleNode( '/iq/query/utc' ).text = Y + ( M.length > 1 ? '' : '0' ) + M + ( D.length > 1 ? '' : '0' ) + D + 'T' + ( h.length > 1 ? '' : '0' ) + h + ( m.length > 1 ? ':' : ':0' ) + m + ( s.length > 1 ? ':' : ':0' ) + s;
-			dom.selectSingleNode( '/iq/query/display' ).text = toLocaleString();
+			var node = dom.selectSingleNode( '/iq/query/utc' );
+			if (node && node.text) {
+				node.text = Y + ( M.length > 1 ? '' : '0' ) + M + ( D.length > 1 ? '' : '0' ) + D + 'T' + ( h.length > 1 ? '' : '0' ) + h + ( m.length > 1 ? ':' : ':0' ) + m + ( s.length > 1 ? ':' : ':0' ) + s;
+			}
+			node = dom.selectSingleNode( '/iq/query/display' );
+			if (node && node.text) {
+				node.text = toLocaleString();
+			}
 		}
 		warn( 'SENT: ' + dom.xml );
 		external.XMPP.SendXML( dom );
