@@ -253,9 +253,8 @@ LRESULT CPdnWnd::WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		if (::IsWindow(m_hWnd)) {
 			::DestroyWindow(m_hWnd);
 			m_hWnd = NULL;
-			return TRUE;
 		}
-		return FALSE;
+		return 0L;
 	}
 	else if(uMsg == WM_SYSCOMMAND)
 	{
