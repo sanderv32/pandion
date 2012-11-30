@@ -7,4 +7,11 @@
 	<disablefont>true</disablefont>
 	<disablesettings>true</disablesettings>
 	<background/>
+	<user_dialog_bold>normal</user_dialog_bold>
+	<user_dialog_color>#004200</user_dialog_color>
+	<user_dialog_face>Arial</user_dialog_face>
+	<user_dialog_italic>normal</user_dialog_italic>
+	<user_dialog_size>10pt</user_dialog_size>
+	<user_dialog_strike>false</user_dialog_strike>
+	<user_dialog_underline>false</user_dialog_underline>
 </settings>
