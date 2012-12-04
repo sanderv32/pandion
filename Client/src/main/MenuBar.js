@@ -75,7 +75,7 @@ function MenuBarUpdate ( section )
 		actions.AddItem( connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_join' ), 23 );
 		actions.AddItem( connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_create' ), 24 );
 		actions.AddSeparator();
-		actions.AddItem( connected && ! sspi, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_password' ), 25 );
+//		actions.AddItem( connected && ! sspi, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_password' ), 25 );
 		actions.AddItem( connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_profile' ), 26 );
 		actions.AddItem( connected, false, false, false, 0, external.globals( 'Translator' ).Translate( 'main', 'menu_axn_avatar' ), 27 );
 
