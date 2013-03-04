@@ -125,7 +125,10 @@ function SendMessage ()
 	{
 		dom.loadXML( '<message><body/><html><body><span/></body></html><x xmlns="jisp:x:jep-0038"><name/></x></message>' );
 		dom.documentElement.setAttribute( 'type', document.getElementById( 'check_normal' ).checked ? 'normal' : 'headline' );
-		dom.selectSingleNode( '/message/x[@xmlns="jisp:x:jep-0038"]/name' ).text = cfg( 'emoticonset' );
+		var node = dom.selectSingleNode( '/message/x[@xmlns="jisp:x:jep-0038"]/name' );
+		if (node) {
+			node.text = cfg( 'emoticonset' );
+		}
 		dom.documentElement.firstChild.text = txt;
 		dom.documentElement.setAttribute( 'xml:lang', external.globals( 'language' ) );
 

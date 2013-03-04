@@ -19,6 +19,7 @@
 <conference_top>50</conference_top>
 <conference_width>700</conference_width>
 <contactlistdisplay>detailed</contactlistdisplay>
+<disablepopup>false</disablepopup>
 <disableemoticon>false</disableemoticon>
 <disablebackground>true</disablebackground>
 <disablefont>true</disablefont>

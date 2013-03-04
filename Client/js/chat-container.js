@@ -379,7 +379,9 @@ function SessionTracker ( Address )
 
 				/* Notify the user of this message
 				 */
-				this.desktopAlert(Event.Payload, 2);
+				this.disablePopup = external.globals( 'cfg' ).Item( 'disablepopup' );
+				if ( this.disablePopup == false )
+					this.desktopAlert(Event.Payload, 2);
 				this.Flash( 4 );
 
 				/* Confirm that the message was displayed

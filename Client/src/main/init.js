@@ -28,6 +28,7 @@ function init ()
 	external.globals.Add( 'connecttime', 0 ); // the time when the connection was established
 	external.globals.Add( 'CommandLineQueue', new Array() ); // buffer of command line actions
 	external.globals.Add( 'debug', true ); // enables console output
+	external.globals.Add( 'disablepopup', false ); // enable or disable popup
 	external.globals.Add( 'headlines', new Array() ); // alerts and headlines buffer
 	external.globals.Add( 'HTTPEnginePort', 7777 ); // port on which the HTTPEngine is listening
 	external.globals.Add( 'idle', null ); // idle time tracking

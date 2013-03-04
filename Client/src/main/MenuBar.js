@@ -13,11 +13,16 @@ function MenuBarUpdate ( section )
 {
 	var cfg = external.globals( 'cfg' );
 	var dissettings = cfg && cfg('disablesettings').toString() == 'true';
+	var cbPopup = cfg && cfg('disablepopup').toString() == 'true';
 	var connected = external.globals( 'XMPPConnected' );
 	var mode = cfg && connected ? cfg( 'lastmode' ) : -1;
 	var sspi = external.globals( 'sspiserver' ).length;
 	var signin = document.getElementById( 'signin-dialog' ).style.display == 'block';
 	var roster = ! signin;
+	var cbPopup = cfg && cfg('disablepopup').toString() == 'true';
+	if (cbPopup == null) {
+		cbPopup = 'false';
+	}
 
 	if ( ! section || section == 'file' )
 	{
@@ -119,6 +124,8 @@ function MenuBarUpdate ( section )
 		tools.AddItem( roster,false,false,false, display.Handle,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_view' ), 33 );
 		tools.AddItem( true,false,false,false, language.Handle,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_language' ), 38 );
 		tools.AddItem( true,aot,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_aot' ), 34 );
+		tools.AddItem( true, cbPopup, false, false, 0, "Disable popup", 47);
+	
 		if (!dissettings) tools.AddSeparator();
 		if (!dissettings) tools.AddItem( roster,false,false,false, 0,external.globals( 'Translator' ).Translate( 'main', 'menu_tool_settings' ), 35 );
 
@@ -256,6 +263,11 @@ function MenuBarSelect ( id )
 			dial_autoupdate( true ); break;
 		case 44: // about
 			dial_about(); break;
+		case 47: // Disable message popup
+			cbPopup = cfg( 'disablepopup' );
+			cfg( 'disablepopup' ) = cbPopup?false:true;
+			MenuBarUpdate( 'tools' );
+			break;
 
 		default:
 			/* Switch the user interface language
