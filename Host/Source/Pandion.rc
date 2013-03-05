@@ -1,45 +1,28 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
 /////////////////////////////////////////////////////////////////////////////
-// This file is part of Pandion.
-//
-// Pandion is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Pandion is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Pandion.  If not, see <http://www.gnu.org/licenses/>.
-//
-// Filename:    Pandion.rc
-// Author(s):   Dries Staelens, Sebastiaan Deckers
-// Copyright:   Copyright (c) 2009 Dries Staelens
-// Copyright:   Copyright (c) 2010 Sebastiaan Deckers
-// Description: The resource file for Pandion.
+// English (United States) resources
 
-#include <winresrc.h>
-#include <VersionNo.h>
-
-/////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
-
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
 
 /////////////////////////////////////////////////////////////////////////////
-// Typelib
+//
+// TYPELIB
+//
 
-1 TYPELIB "Pandion.tlb"
+1                       TYPELIB                 "Pandion.tlb"
 
 /////////////////////////////////////////////////////////////////////////////
+//
 // Version
+//
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION FILEVER
- PRODUCTVERSION PRODUCTVER
+ FILEVERSION 2,6,117,0
+ PRODUCTVERSION 2,6,117,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -54,12 +37,8 @@ BEGIN
     BEGIN
         BLOCK "040904e3"
         BEGIN
-            VALUE "Comments", COMMENTS
-            VALUE "CompanyName", COMPANY
-            VALUE "FileDescription", DESCRIPTION
-            VALUE "LegalCopyright", COPYRIGHT
-			VALUE "FileVersion", FILEVERSTR
-			VALUE "ProductVersion", PRODUCTVERSTR
+            VALUE "FileVersion", "2.6.117.0"
+            VALUE "ProductVersion", "2.6.117.0"
         END
     END
     BLOCK "VarFileInfo"
@@ -68,8 +47,52 @@ BEGIN
     END
 END
 
-/////////////////////////////////////////////////////////////////////////////
-// Icon
 
-#define IDI_ICON1 205
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
 IDI_ICON1               ICON                    "default.ico"
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

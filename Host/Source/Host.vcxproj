@@ -52,6 +52,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <GenerateManifest>false</GenerateManifest>
+    <TargetName>Pandion</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
@@ -188,6 +189,7 @@
     <ClInclude Include="CrashHandler.h" />
     <ClInclude Include="DispInterfaceImpl.h" />
     <ClInclude Include="Hash.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SRVLookup.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="UTF.h" />
@@ -271,6 +273,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="default.ico" />
+    <None Include="Pandion.tlb" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Pandion.rc" />
